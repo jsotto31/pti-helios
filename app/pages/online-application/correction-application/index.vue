@@ -1,9 +1,12 @@
 <template>
   <v-container>
+        <PageHeader title="Correction Application" subtitle="Manage Correction logs for employees.">
+      <template #create>
+        <CreateDialog @create="execute" />
+      </template>
+    </PageHeader>
     <v-row>
       <v-col cols="12">
-        <v-card class="" style="border: 5px solid #7C3AED !important" flat>
-          <v-card-title class="bg-primary">Correction Application</v-card-title>
           <v-card-text class="py-5">
             <v-container>
               <v-row>
@@ -24,14 +27,9 @@
                   <VDateInput class="mt-1" v-model="date_to" variant="outlined" hide-details color="primary" density="comfortable" prepend-icon="" prepend-inner-icon="mdi-calendar"></VDateInput>
                 </v-col>
               </v-row>
-              <v-row>
-                <v-col cols="4" class="d-flex" style="gap: 5px;">
-                  <CreateDialog @create="execute"></CreateDialog>
-                </v-col>
-              </v-row>
+              
             </v-container>
           </v-card-text>
-        </v-card>
       </v-col>
     </v-row>
     <v-row>

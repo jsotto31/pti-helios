@@ -25,6 +25,8 @@
     "vue-router": "^4.5.1"
   },
   "devDependencies": {
+    "less": "^4.4.1",
+    "sass": "^1.90.0",
     "vuetify-nuxt-module": "^0.18.7"
   }
 }

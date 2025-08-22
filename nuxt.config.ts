@@ -24,7 +24,19 @@ export default defineNuxtConfig({
     appName: process.env.APP_NAME || '',
   },
 
+css: [
+  '~/assets/styles/global.scss'  // this makes the SCSS global across all components
+],
+
   app: {
-    pageTransition: { name: 'fade', mode: 'out-in' }
+    pageTransition: { name: 'fade', mode: 'out-in' },
+    head: {
+      link: [
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap'
+        }
+      ]
+    }
   }
 })

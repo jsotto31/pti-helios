@@ -1,0 +1,119 @@
+// app/assets/styles/styles.scss
+
+// Global
+$body-font-family: 'Inter', sans-serif !default;
+$border-radius-root: 8px !default;
+$color-pack: false !default;
+
+// Minimal dark/white theme colors
+$primary: #1f2937 !default;   // dark gray (almost black)
+$secondary: #374151 !default; // medium gray
+$background: #ffffff !default; // white background
+$surface: #f9fafb !default;    // light gray cards/surfaces
+$error: #ef4444 !default;      // red for errors
+$info: #6b7280 !default;       // gray info tone
+$success: #10b981 !default;    // green success tone
+$warning: #f59e0b !default;    // yellow warning tone
+
+// Buttons
+$button-border-radius: 8px !default;
+$button-font-weight: 600 !default;
+$button-text-transform: none !default;
+$button-height: 44px !default;
+
+// Forms
+$field-border-radius: 8px !default;
+// $field-label-font-weight: 500 !default; // Remove - not supported in @use
+
+// Cards
+$card-border-radius: 12px !default;
+$card-elevation: 2 !default;
+$card-text-padding: 24px !default;
+
+// Tables
+$table-border-radius: 8px !default;
+// $table-header-font-weight: 600 !default; // Remove - not supported in @use
+
+// Dialogs/Modals
+$dialog-border-radius: 16px !default;
+$dialog-elevation: 24 !default;
+
+// Chip
+$chip-border-radius: 6px !default;
+
+// Alert
+$alert-border-radius: 8px !default;
+$alert-density: ('comfortable': 0) !default;
+
+
+// Snackbar
+$snackbar-border-radius: 8px !default;
+$snackbar-elevation: 6 !default;
+
+// Menu
+$menu-content-border-radius: 8px !default;
+$menu-elevation: 4 !default;
+
+// Tooltip
+$tooltip-background-color: #1f2937 !default;
+$tooltip-border-radius: 6px !default;
+
+// Control spacing and density
+$button-density: ('comfortable': 0) !default;
+$alert-density: ('comfortable': 0) !default;
+$input-density: ('comfortable': 0) !default;
+$table-density: ('comfortable': 0) !default;
+
+// SINGLE @use STATEMENT WITH ALL SUPPORTED VARIABLES
+@use 'vuetify/settings' with (
+  // Global
+  $body-font-family: $body-font-family,
+  $border-radius-root: $border-radius-root,
+  $color-pack: $color-pack,
+  
+  // Typography
+  $heading-font-family: $body-font-family,
+  $typography: ('h1': ('size': 2.5rem, 'weight': 700)),
+  
+  // Buttons
+  $button-border-radius: $button-border-radius,
+  $button-font-weight: $button-font-weight,
+  $button-text-transform: $button-text-transform,
+  $button-height: $button-height,
+  $button-density: $button-density,
+  
+  // Cards
+  $card-border-radius: $card-border-radius,
+  $card-elevation: $card-elevation,
+  $card-text-padding: $card-text-padding,
+  
+  // Dialogs
+  $dialog-border-radius: $dialog-border-radius,
+  $dialog-elevation: $dialog-elevation,
+  
+  // Forms
+  $field-border-radius: $field-border-radius,
+  $input-density: $input-density,
+  
+  // Tables
+  $table-density: $table-density,
+  
+  // Chip
+  $chip-border-radius: $chip-border-radius,
+  
+  // Alert
+  $alert-border-radius: $alert-border-radius,
+  $alert-density: $alert-density,
+  
+  // Snackbar
+  $snackbar-border-radius: $snackbar-border-radius,
+  $snackbar-elevation: $snackbar-elevation,
+  
+  // Menu
+  $menu-content-border-radius: $menu-content-border-radius,
+  $menu-elevation: $menu-elevation,
+  
+  // Tooltip
+  $tooltip-background-color: $tooltip-background-color,
+  $tooltip-border-radius: $tooltip-border-radius
+);

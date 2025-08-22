@@ -1,36 +1,75 @@
+<script setup lang="ts">
+import type { LeaveRequest } from '~/types/online-application';
+import CreateDialog from './_components/CreateDialog.vue'
+import DeleteDialog from './_components/DeleteDialog.vue';
+import EditDialog from './_components/EditDialog.vue';
+const itemsPerPage = ref(10);
+const date_from = ref(null);
+const date_to = ref(null);
+const employee_id = ref(null);
+const selectedStatus = ref(null);
+const type = ref(null);
+const sortBy = ref()
+const page = ref(1)
+const search = ref("")
+
+const { data: leave_applications, status, execute } = await useApiFetch("/online-application/leave-applications", {
+  method: 'GET',
+  immediate: true,
+  watch: [sortBy, page, itemsPerPage],
+  query: {
+    page,
+    itemsPerPage,
+    sortBy,
+    date_from,
+    date_to,
+    employee_id,
+    status: selectedStatus,
+    type,
+  }
+})
+
+</script>
+
+<style lang="less" scoped>
+  
+
+</style>
+
 <template>
   <v-container>
+     <PageHeader title="Leave Application" subtitle="Manage leave applications for employees.">
+      <template #create>
+        <CreateDialog @create="execute" />
+      </template>
+    </PageHeader>
+
+
     <v-row>
       <v-col cols="12">
-        <v-card class="" style="border: 5px solid #7C3AED !important" flat>
-          <v-card-title class="bg-primary">Leave Management</v-card-title>
+        <v-card class="" style="" flat>
           <v-card-text class="py-5">
             <v-container>
               <v-row>
                 <v-col cols="4">
-                  <label for="online-request-type" class="text-subtitle-1">Status</label>
+                  <label for="online-request-type" class="label">Status</label>
                   <select-status v-model="selectedStatus" hide-details></select-status>
                 </v-col>
                 <v-col cols="4">
-                  <label for="online-request-type" class="text-subtitle-1">Leave Type</label>
+                  <label for="online-request-type" class="label">Leave Type</label>
                   <select-leave-type v-model="type" hide-details></select-leave-type>
                 </v-col>
                 <v-col cols="4">
-                  <label for="online-request-type" class="text-subtitle-1">Employee</label>
+                  <label for="online-request-type" class="label">Employee</label>
                   <select-employee v-model="employee_id" hide-details></select-employee>
                 </v-col>
                 <v-col cols="4">
-                  <label for="online-request-type" class="text-subtitle-1">Date From</label>
+                  <label for="online-request-type" class="label">Date From</label>
                   <VDateInput class="mt-1" v-model="date_from" variant="outlined" hide-details color="primary" density="comfortable" prepend-icon="" prepend-inner-icon="mdi-calendar"></VDateInput>
                 </v-col>
                 <v-col cols="4">
-                  <label for="online-request-type" class="text-subtitle-1">Date To</label>
+                  <label for="online-request-type" class="label">Date To</label>
                   <VDateInput class="mt-1" v-model="date_to" variant="outlined" hide-details color="primary" density="comfortable" prepend-icon="" prepend-inner-icon="mdi-calendar"></VDateInput>
-                </v-col>
-              </v-row>
-              <v-row>
-                <v-col cols="4" class="d-flex" style="gap: 5px;">
-                  <CreateDialog @create="execute"></CreateDialog>
                 </v-col>
               </v-row>
             </v-container>
@@ -40,8 +79,9 @@
     </v-row>
     <v-row>
       <v-col cols="12">
-        <v-card style="border: 5px solid #7C3AED !important">
-          <v-card-title class="bg-primary">Application List</v-card-title>
+         <v-card class="border" flat>
+          <p class="panel-header p-4">Application List</p>
+          <v-divider class=""></v-divider>
           <v-card-text class="">
             <v-container>
               <v-row>
@@ -91,37 +131,3 @@
   </v-container>
 </template>
 
-<script setup lang="ts">
-import type { LeaveRequest } from '~/types/online-application';
-import CreateDialog from './_components/CreateDialog.vue'
-import DeleteDialog from './_components/DeleteDialog.vue';
-import EditDialog from './_components/EditDialog.vue';
-const itemsPerPage = ref(10);
-const date_from = ref(null);
-const date_to = ref(null);
-const employee_id = ref(null);
-const selectedStatus = ref(null);
-const type = ref(null);
-const sortBy = ref()
-const page = ref(1)
-const search = ref("")
-
-const { data: leave_applications, status, execute } = await useApiFetch("/online-application/leave-applications", {
-  method: 'GET',
-  immediate: true,
-  watch: [sortBy, page, itemsPerPage],
-  query: {
-    page,
-    itemsPerPage,
-    sortBy,
-    date_from,
-    date_to,
-    employee_id,
-    status: selectedStatus,
-    type,
-  }
-})
-
-</script>
-
-<style lang="less" scoped></style>
