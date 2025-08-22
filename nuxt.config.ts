@@ -24,7 +24,20 @@ export default defineNuxtConfig({
     appName: process.env.APP_NAME || '',
   },
 
+css: [
+  '~/assets/styles/global.scss',  
+  '~/assets/styles/buttons.scss'  
+],
+
   app: {
-    pageTransition: { name: 'fade', mode: 'out-in' }
+    pageTransition: { name: 'fade', mode: 'out-in' },
+    head: {
+      link: [
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap'
+        }
+      ]
+    }
   }
 })

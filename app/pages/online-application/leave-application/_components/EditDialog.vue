@@ -2,11 +2,11 @@
     <div>
         <v-dialog width="900" v-model="dialog" persistent>
             <template #activator="{props}">
-                <v-btn v-bind="props" variant="flat" color="primary" icon="mdi-pencil" rounded size="small"></v-btn>
+                <v-btn v-bind="props" variant="flat" >Edit</v-btn>
             </template>
             <template #default="{ isActive }">
                 <v-card class="pa-5 rounded-lg" :disabled="status == 'pending'">
-                    <v-card-title class="pr-4">Edit Leave Application</v-card-title>
+                    <v-card-title class="pr-4 dialog-header">Edit Leave Application</v-card-title>
                     <v-divider></v-divider>
                     <v-card-text class="px-4">
                         <v-container>

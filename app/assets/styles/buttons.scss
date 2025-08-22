@@ -1,0 +1,183 @@
+/* ================================
+   Shadcn-like Button Variants
+   Place in: assets/styles/global.scss
+   ================================= */
+
+/* Theme tokens */
+:root {
+  /* Default (primary) */
+  --btn-primary-bg: #111827;  /* slate-900 */
+  --btn-primary-fg: #ffffff;
+  --btn-primary-hover: #1f2937; /* slate-800 */
+  --btn-primary-ring: 0 0 0 3px rgba(59, 130, 246, .35); /* blue-500 ring */
+
+  /* Secondary */
+  --btn-secondary-bg: #f3f4f6; /* gray-100 */
+  --btn-secondary-fg: #111827;
+  --btn-secondary-hover: #e5e7eb; /* gray-200 */
+  --btn-secondary-border: #d1d5db;
+
+  /* Destructive */
+  --btn-destructive-bg: #dc2626; /* red-600 */
+  --btn-destructive-fg: #ffffff;
+  --btn-destructive-hover: #b91c1c; /* red-700 */
+  --btn-destructive-ring: 0 0 0 3px rgba(239, 68, 68, .4);
+
+  /* Outline */
+  --btn-outline-fg: #111827;
+  --btn-outline-border: #d1d5db;
+  --btn-outline-hover: rgba(17, 24, 39, .05);
+
+  /* Ghost */
+  --btn-ghost-fg: #111827;
+  --btn-ghost-hover: rgba(17, 24, 39, .06);
+  --btn-ghost-border: rgba(17, 24, 39, .14);
+
+  /* Link */
+  --btn-link-fg: #2563eb; /* blue-600 */
+  --btn-link-hover: #1d4ed8; /* blue-700 */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --btn-primary-bg: #e5e7eb; 
+    --btn-primary-fg: #111827;
+    --btn-primary-hover: #d1d5db;
+    --btn-primary-ring: 0 0 0 3px rgba(147, 197, 253, .4);
+
+    --btn-secondary-bg: #374151; 
+    --btn-secondary-fg: #f9fafb;
+    --btn-secondary-hover: #4b5563;
+    --btn-secondary-border: #4b5563;
+
+    --btn-destructive-bg: #ef4444;
+    --btn-destructive-fg: #f9fafb;
+    --btn-destructive-hover: #dc2626;
+    --btn-destructive-ring: 0 0 0 3px rgba(248, 113, 113, .4);
+
+    --btn-outline-fg: #f9fafb;
+    --btn-outline-border: #4b5563;
+    --btn-outline-hover: rgba(255, 255, 255, .08);
+
+    --btn-ghost-fg: #f9fafb;
+    --btn-ghost-hover: rgba(255, 255, 255, .08);
+    --btn-ghost-border: rgba(255, 255, 255, .18);
+
+    --btn-link-fg: #60a5fa; 
+    --btn-link-hover: #3b82f6;
+  }
+}
+
+/* Base reset */
+.btn {
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  appearance: none;
+  border: 1px solid transparent;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  line-height: 1.2;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: background-color .15s ease, border-color .15s ease, color .15s ease, box-shadow .15s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  text-decoration: none;
+  white-space: nowrap;
+
+  &:disabled {
+    opacity: .5;
+    pointer-events: none;
+  }
+}
+
+/* Sizes */
+.btn-sm { height: 32px; padding: 0 .625rem; font-size: .8125rem; }
+.btn-md { height: 40px; padding: 0 .875rem; font-size: .9rem; }
+.btn-lg { height: 44px; padding: 0 1rem;    font-size: .95rem; }
+
+/* ================================
+   Variants
+   ================================= */
+
+/* Default (filled / primary) */
+.btn-default {
+  @extend .btn;
+  background-color: var(--btn-primary-bg);
+  color: var(--btn-primary-fg);
+
+  &:hover { background-color: var(--btn-primary-hover); }
+  &:focus-visible { outline: none; box-shadow: var(--btn-primary-ring); }
+}
+
+/* Secondary */
+.btn-secondary {
+  @extend .btn;
+  background-color: var(--btn-secondary-bg);
+  color: var(--btn-secondary-fg);
+  border: 1px solid var(--btn-secondary-border);
+
+  &:hover { background-color: var(--btn-secondary-hover); }
+}
+
+/* Destructive */
+.btn-destructive {
+  @extend .btn;
+  background-color: var(--btn-destructive-bg);
+  color: var(--btn-destructive-fg);
+
+  &:hover { background-color: var(--btn-destructive-hover); }
+  &:focus-visible { outline: none; box-shadow: var(--btn-destructive-ring); }
+}
+
+/* Outline */
+.btn-outline {
+  @extend .btn;
+  background: transparent;
+  color: var(--btn-outline-fg);
+  border: 1px solid var(--btn-outline-border);
+
+  &:hover { background-color: var(--btn-outline-hover); }
+}
+
+/* Ghost */
+.btn-ghost {
+  @extend .btn;
+  background: transparent;
+  color: var(--btn-ghost-fg);
+
+  &:hover { background-color: var(--btn-ghost-hover); border-color: var(--btn-ghost-border); }
+}
+
+/* Link */
+.btn-link {
+  @extend .btn;
+  background: transparent;
+  color: var(--btn-link-fg);
+  border: none;
+  padding: 0;
+
+  &:hover { color: var(--btn-link-hover); text-decoration: underline; }
+}
+
+/* Icon spacing */
+.btn > svg,
+.btn > i,
+.btn > .v-icon {
+  width: 1.1em;
+  height: 1.1em;
+}
+
+/* Make them work with Vuetify v-btn */
+.v-btn.btn-default   { all: unset; @extend .btn-default; }
+.v-btn.btn-secondary { all: unset; @extend .btn-secondary; }
+.v-btn.btn-destructive { all: unset; @extend .btn-destructive; }
+.v-btn.btn-outline   { all: unset; @extend .btn-outline; }
+.v-btn.btn-ghost     { all: unset; @extend .btn-ghost; }
+.v-btn.btn-link      { all: unset; @extend .btn-link; }
+
+
+

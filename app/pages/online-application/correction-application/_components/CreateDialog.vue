@@ -1,7 +1,10 @@
 <template>
     <div>
-        <v-btn @click="dialog = true" variant="flat" color="primary" class="text-capitalize">Add Correction
-            Application</v-btn>
+          <v-btn @click="dialog = true" class="button button-primary rounded-md" height="45" flat>
+            <v-icon start size="18">mdi-plus</v-icon>
+            Apply Correction
+        </v-btn>
+
         <v-dialog width="1000" v-model="dialog" persistent>
             <template #default="{ isActive }">
                 <v-card class="pa-5 rounded-lg" :disabled="status == 'pending'">

@@ -1,7 +1,7 @@
 <template>
     <v-dialog max-width="500" v-model="dialog">
         <template #activator="{props}">
-            <v-btn v-bind="props" flat class="text-capitalize" color="error" rounded size="small" icon="mdi-trash-can-outline"></v-btn>
+            <v-btn v-bind="props"  variant="plain" flat class="" color="error" >Delete</v-btn>
         </template>
         <template #default="{isActive}">
             <DeleteConfirmationCard
@@ -9,7 +9,7 @@
                 @delete="execute" 
                 @cancel="isActive.value = false"
             > 
-                Are you sure you want to delete this Leave Application? 
+                <p class="dialog-title text-h6">Are you sure you want to delete this Leave Application?</p> <br>
                 This action cannot be undone and will permanently remove all related data associated with this leave request.
             </DeleteConfirmationCard>
         </template>
