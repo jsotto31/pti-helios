@@ -1,4 +1,5 @@
 // C:\Users\rysch\pti-helios-1\vuetify.config.ts
+// C:\Users\rysch\pti-helios-1\vuetify.config.ts
 
 export default function vuetifyConfig() {
     return {
@@ -84,6 +85,42 @@ export default function vuetifyConfig() {
                             'menu-elevation': 4,
                             'tooltip-background-color': '#1E293B',
                             'tooltip-border-radius': '6px',
+                            primary: '#010101ff',       // Softer vivid indigo
+                            secondary: '#22D3EE',     // Bright cyan accent
+                            background: '#0F172A',    // Deep minimal navy
+                            surface: '#1E293B',       // Slightly lighter surface
+                            success: '#4ADE80',       // Vivid green
+                            warning: '#FACC15',       // Bright amber
+                            error: '#F87171',         // Coral red
+                            info: '#60A5FA',          // Vivid blue
+                            'on-background': '#F9FAFB', // Light text
+                            'on-surface': '#F9FAFB',
+                            border: '#334155',         // Subtle dark border
+                            'navigation-bar': '#1E293B', // Matches surface
+                        },
+                        variables: {
+                            'border-radius-root': '8px',
+                            'button-height': '44px',
+                            'button-border-radius': '12px',
+                            'button-font-weight': '500',
+                            'button-text-transform': 'none',
+                            'card-border-radius': '16px',
+                            'card-elevation': '4',
+                            'card-text-padding': '24px',
+                            'dialog-border-radius': '16px',
+                            'dialog-elevation': '24px',
+                            'field-border-radius': '12px',
+                            'input-density-comfortable': 0,
+                            'table-border-radius': '12px',
+                            'table-density-comfortable': 0,
+                            'alert-border-radius': '12px',
+                            'alert-density-comfortable': 0,
+                            'snackbar-border-radius': '12px',
+                            'snackbar-elevation': 6,
+                            'menu-content-border-radius': '12px',
+                            'menu-elevation': 4,
+                            'tooltip-background-color': '#1E293B',
+                            'tooltip-border-radius': '6px',
                         },
                     },
                 },
@@ -91,3 +128,4 @@ export default function vuetifyConfig() {
         },
     }
 }
+

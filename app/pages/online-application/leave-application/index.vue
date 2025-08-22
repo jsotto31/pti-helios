@@ -52,13 +52,16 @@ const {
               <v-row>
                 <v-col cols="4">
                   <label for="online-request-type" class="label">Status</label>
+                  <label for="online-request-type" class="label">Status</label>
                   <select-status v-model="selectedStatus" hide-details></select-status>
                 </v-col>
                 <v-col cols="4">
                   <label for="online-request-type" class="label">Leave Type</label>
+                  <label for="online-request-type" class="label">Leave Type</label>
                   <select-leave-type v-model="type" hide-details></select-leave-type>
                 </v-col>
                 <v-col cols="4">
+                  <label for="online-request-type" class="label">Employee</label>
                   <label for="online-request-type" class="label">Employee</label>
                   <select-employee v-model="employee_id" hide-details></select-employee>
                 </v-col>

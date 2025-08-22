@@ -9,6 +9,7 @@ import { useNotificationStore } from '#imports';
 const $notification = useNotificationStore();
 const dialog = ref(false)
 const { form, clear } = useForm(null)
+const { form, clear } = useForm(null)
 const emits = defineEmits(['create'])
 
 const { execute, error, status } = await useApiFetch("/online-application/leave-applications", {
