@@ -25,3 +25,26 @@ export function useDisplayOBTypeDescription(value: string) {
   const found = items.find(item => item.value === value);
   return found ? found.title : value;
 }
+
+export const online_application_types = [
+  {
+    title: 'Leave Application',
+    value: 'leave_application',
+  },
+  {
+    title: 'Overtime Application',
+    value: 'overtime_application',
+  },
+  {
+    title: 'Official Business / Work From Home',
+    value: 'ob_application',
+  },
+  {
+    title: 'Time Correction',
+    value: 'correction_application',
+  },
+  {
+    title: 'Change Schedule',
+    value: 'change_schedule_application',
+  },
+];

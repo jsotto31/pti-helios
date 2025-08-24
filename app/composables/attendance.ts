@@ -1,3 +1,5 @@
+import type { ScheduleDay, ScheduleGrouped } from "~/types/attendance";
+
 export function useFormatTimeRange(start: string | null, end: string | null) {
   const placeholder = "--:-- --";
 
@@ -17,4 +19,15 @@ export function useFormatTimeRange(start: string | null, end: string | null) {
   const displayEnd   = formatTime(end);
 
   return `(${displayStart}) - (${displayEnd})`;
+}
+
+export function useGroupSchedulesByDay(data: ScheduleDay[]): ScheduleGrouped {
+  return data.reduce<ScheduleGrouped>((acc, schedule) => {
+    if (!acc[schedule.day]) {
+      acc[schedule.day] = []
+    }
+    //@ts-ignore
+    acc[schedule.day].push(schedule)
+    return acc
+  }, {})
 }

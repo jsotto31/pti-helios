@@ -39,9 +39,10 @@ export const useRouteStore = defineStore('routes', function () {
             children: [
                 { title: 'Approval Setup', icon: 'mdi-file', link: '/online-application/approval-setup' },
                 { title: 'Leave Application', icon: 'mdi-file', link: '/online-application/leave-application' },
+                { title: 'Overtime Application', icon: 'mdi-file', link: '/online-application/overtime-application' },
                 { title: 'OB/WFH Application', icon: 'mdi-file', link: '/online-application/ob-application' },
                 { title: 'Correction Application', icon: 'mdi-file', link: '/online-application/correction-application' },
-                { title: 'Change Schedule', icon: 'mdi-file', link: '/' },
+                { title: 'Change Schedule', icon: 'mdi-file', link: '/online-application/change-schedule' },
             ],
         },
         {

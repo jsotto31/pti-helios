@@ -1,10 +1,10 @@
 <template>
     <div>
-        <v-btn @click="dialog = true" variant="flat" color="primary" class="text-capitalize">Add OB/WFH Application</v-btn>
+        <v-btn @click="dialog = true" variant="flat" color="primary" class="text-capitalize">Apply OB/WFH Application</v-btn>
         <v-dialog width="900" v-model="dialog" persistent>
             <template #default="{ isActive }">
                 <v-card class="pa-5 rounded-lg" :disabled="status == 'pending'">
-                    <v-card-title class="pr-4">Add OB/WFH Application</v-card-title>
+                    <v-card-title class="pr-4">Apply OB/WFH Application</v-card-title>
                     <v-divider></v-divider>
                     <v-card-text class="px-4">
                         <v-container>

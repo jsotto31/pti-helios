@@ -4,7 +4,7 @@ export default function vuetifyConfig() {
     return {
         vuetifyOptions: {
             theme: {
-                defaultTheme: 'light',
+                defaultTheme: 'dark',
                 themes: {
                     light: {
                         colors: {

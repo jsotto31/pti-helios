@@ -2,20 +2,19 @@
   <v-container>
     <v-row>
       <v-col cols="12">
-        <v-card class="" style="border: 5px solid #7C3AED !important" flat>
+        <v-card class="rounded border" style="border: 5px solid #A78BFA !important" flat>
           <v-card-title class="bg-primary">Online Approver Set-up</v-card-title>
           <v-card-text class="py-5">
             <v-container>
               <v-row>
                 <v-col cols="6">
                   <label for="online-request-type" class="text-subtitle-1">Online Request Type</label>
-                  <v-select color="primary" class="mt-2" density="comfortable" variant="outlined"
-                    label="Online Request Type" single-line hide-details></v-select>
+                  <v-select v-model="type" color="primary" class="mt-2" density="comfortable" variant="outlined"
+                    label="Online Request Type" :items="online_application_types" single-line hide-details></v-select>
                 </v-col>
                 <v-col cols="6">
                   <label for="online-request-type" class="text-subtitle-1">Employee</label>
-                  <v-select color="primary" class="mt-2" density="comfortable" variant="outlined"
-                    label="Online Request Type" single-line hide-details></v-select>
+                  <SelectEmployee v-model="employee_id" class="mt-2" single-line hide-details></SelectEmployee>
                 </v-col>
               </v-row>
             </v-container>
@@ -25,36 +24,69 @@
     </v-row>
     <v-row>
       <v-col cols="12">
-        <v-card style="border: 5px solid #7C3AED !important">
+        <v-card style="border: 5px solid #A78BFA !important">
           <v-card-title class="bg-primary">Employee List</v-card-title>
           <v-card-text class="">
             <v-container>
               <v-row>
                 <v-col cols="12" class="px-1">
-                    <v-data-table-server class="border" :header-props="{class: 'bg-primary'}" v-model:items-per-page="itemsPerPage" :headers="headers" :items="serverItems"
-                      :items-length="totalItems" :loading="loading" item-value="name"
-                      @update:options="loadItems">
-                      <template #item.approver_id_1="{ item }">
-                        <v-select width="180px" label="Select Approver" density="compact" variant="outlined" single-line hide-details></v-select>
-                      </template>
-                      <template #item.approver_id_2="{ item }">
-                        <v-select width="180px" label="Select Approver" density="compact" variant="outlined" single-line hide-details></v-select>
-                      </template>
-                      <template #item.approver_id_3="{ item }">
-                        <v-select width="180px" label="Select Approver" density="compact" variant="outlined" single-line hide-details></v-select>
-                      </template>
-                      <template #item.approver_id_4="{ item }">
-                        <v-select width="180px" label="Select Approver" density="compact" variant="outlined" single-line hide-details></v-select>
-                      </template>
-                      <template #item.action="{item}">
-                        <div class="d-flex justify-center" style="gap: 5px;">
-                          <v-btn size="small" variant="outlined" color="grey" rounded flat icon="mdi-content-save"></v-btn>
-                          <v-btn size="small" variant="outlined" color="grey" rounded flat icon="mdi-content-copy"></v-btn>
-                          <v-btn size="small" variant="outlined" color="grey" rounded flat icon="mdi-content-paste"></v-btn>
-                          <v-btn size="small" variant="outlined" color="grey" rounded flat icon="mdi-reload"></v-btn>
-                        </div>
-                      </template>
-                    </v-data-table-server>
+                  <SaveAllButton @save="execute" :type="type" :approval_setup_items="approval_setup_items"></SaveAllButton>
+                </v-col>
+                <v-col cols="12" class="px-1">
+                  <v-card style="overflow-x: auto;">
+                    <div style="width: 2000px;">
+                      <v-data-table-server class="border rounded" :header-props="{ class: 'bg-primary' }"
+                        v-model:items-per-page="itemsPerPage" :headers="approval_setup.headers"
+                        :items="approval_setup.data" v-model:page="page" :items-length="approval_setup.total"
+                        item-value="name" v-model:sort-by="sortBy" :loading="status == 'pending'">
+                        <template #item.first_approver="{ index, item }">
+                          <div class="d-flex justify-center pa-3">
+                            <SelectApprover 
+                              v-model="approval_setup_items[index].approval_sequence_setup_items[0].approver_id"
+                              :approvers="approval_setup_items[index].approval_sequence_setup_items"
+                              :employee_id="approval_setup_items[index].approval_sequence_setup_items[0].employee_id"
+                              width="180px" label="Select Approver" single-line
+                              hide-details></SelectApprover>
+                          </div>
+                        </template>
+                        <template #item.second_approver="{ index, item }">
+                          <div class="d-flex justify-center pa-3">
+                            <SelectApprover 
+                              v-model="approval_setup_items[index].approval_sequence_setup_items[1].approver_id"
+                              :approvers="approval_setup_items[index].approval_sequence_setup_items"
+                              :employee_id="approval_setup_items[index].approval_sequence_setup_items[1].employee_id"
+                              width="180px" label="Select Approver" single-line
+                              hide-details></SelectApprover>
+                          </div>
+                        </template>
+                        <template #item.third_approver="{ index, item }">
+                          <div class="d-flex justify-center pa-3">
+                            <SelectApprover 
+                              v-model="approval_setup_items[index].approval_sequence_setup_items[2].approver_id"
+                              :approvers="approval_setup_items[index].approval_sequence_setup_items"
+                              :employee_id="approval_setup_items[index].approval_sequence_setup_items[2].employee_id"
+                              width="180px" label="Select Approver" single-line
+                              hide-details></SelectApprover>
+                          </div>
+                        </template>
+                        <template #item.fourth_approver="{ index, item }">
+                          <div class="d-flex justify-center pa-3">
+                            <SelectApprover 
+                              v-model="approval_setup_items[index].approval_sequence_setup_items[3].approver_id"
+                              :approvers="approval_setup_items[index].approval_sequence_setup_items"
+                              :employee_id="approval_setup_items[index].approval_sequence_setup_items[3].employee_id"
+                              width="180px" label="Select Approver" single-line
+                              hide-details></SelectApprover>
+                          </div>
+                        </template>
+                        <template #item.action="{ item, index }">
+                          <div v-if="approval_setup_items[index]">
+                            <SetupRowAction :selected="selectedRow == index" @save="execute" @paste="paste(index)" :type="type" @copy="selectedRow = index" v-model:approval_sequence_setup_items="approval_setup_items[index].approval_sequence_setup_items"></SetupRowAction>
+                          </div>
+                        </template>
+                      </v-data-table-server>
+                    </div>
+                  </v-card>
                 </v-col>
               </v-row>
             </v-container>
@@ -67,96 +99,44 @@
 
 <script setup>
 import { ref } from 'vue'
+import SelectEmployee from '~/components/SelectEmployee.vue'
+import SetupRowAction from './_components/SetupRowAction.vue'
+import SelectApprover from './_components/SelectApprover.vue';
+import SaveAllButton from './_components/SaveAllButton.vue';
+const selectedRow = ref(null)
+const itemsPerPage = ref(10);
+const date_from = ref(null);
+const date_to = ref(null);
+const employee_id = ref(null);
+const selectedStatus = ref(null);
+const type = ref(null);
+const sortBy = ref()
+const page = ref(1)
+const search = ref("")
+const approval_setup_items = ref();
 
-const employees = [
-  {
-    employee_id: 'EMP0001',
-    full_name: "Joshua Sotto",
-    approver_id_1: 'APR1001',
-    approver_id_2: 'APR2001',
-    approver_id_3: 'APR3001',
-    approver_id_4: 'APR4001',
+const { data: approval_setup, status, execute, error } = await useApiFetch("/online-application/approval-setups", {
+  method: 'GET',
+  immediate: true,
+  watch: [sortBy, page, itemsPerPage],
+  query: {
+    page,
+    search,
+    itemsPerPage,
+    sortBy,
+    date_from,
+    date_to,
+    employee_id,
+    status: selectedStatus,
+    type,
   },
-  {
-    employee_id: 'EMP0002',
-    full_name: "Joshua Sotto",
-    approver_id_1: 'APR1002',
-    approver_id_2: 'APR2002',
-    approver_id_3: 'APR3002',
-    approver_id_4: 'APR4002',
-  },
-  {
-    employee_id: 'EMP0003',
-    full_name: "Joshua Sotto",
-    approver_id_1: 'APR1003',
-    approver_id_2: 'APR2003',
-    approver_id_3: 'APR3003',
-    approver_id_4: 'APR4003',
-  },
-  {
-    employee_id: 'EMP0004',
-    full_name: "Joshua Sotto",
-    approver_id_1: 'APR1004',
-    approver_id_2: 'APR2004',
-    approver_id_3: 'APR3004',
-    approver_id_4: 'APR4004',
-  },
-  {
-    employee_id: 'EMP0005',
-    full_name: "Joshua Sotto",
-    approver_id_1: 'APR1005',
-    approver_id_2: 'APR2005',
-    approver_id_3: 'APR3005',
-    approver_id_4: 'APR4005',
-  },
-]
+  onResponse(event){
+    approval_setup_items.value = event.response._data.data
+  }
+})
 
-const headers = ref([
-  { title: 'Employee ID', key: 'employee_id', align: 'start' },
-  { title: 'Full name', key: 'full_name', align: 'start' },
-  { title: 'Approver 1', key: 'approver_id_1', align: 'start' },
-  { title: 'Approver 2', key: 'approver_id_2', align: 'start' },
-  { title: 'Approver 3', key: 'approver_id_3', align: 'start' },
-  { title: 'Approver 4', key: 'approver_id_4', align: 'start' },
-  { title: 'Actions', key: 'action', align: 'center', sortable: false },
-])
-
-const FakeAPI = {
-  async fetch({ page, itemsPerPage, sortBy }) {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        const start = (page - 1) * itemsPerPage
-        const end = start + itemsPerPage
-        const items = employees.slice()
-        if (sortBy.length) {
-          const sortKey = sortBy[0].key
-          const sortOrder = sortBy[0].order
-          items.sort((a, b) => {
-            const aValue = a[sortKey]
-            const bValue = b[sortKey]
-            return sortOrder === 'desc'
-              ? (aValue > bValue ? -1 : 1)
-              : (aValue < bValue ? -1 : 1)
-          })
-        }
-        const paginated = items.slice(start, end)
-        resolve({ items: paginated, total: items.length })
-      }, 500)
-    })
-  },
-}
-
-const itemsPerPage = ref(5)
-const serverItems = ref([])
-const loading = ref(true)
-const totalItems = ref(0)
-function loadItems({ page, itemsPerPage, sortBy }) {
-  loading.value = true
-  FakeAPI.fetch({ page, itemsPerPage, sortBy }).then(({ items, total }) => {
-    serverItems.value = items
-    totalItems.value = total
-    loading.value = false
-  })
+function paste(index){
+  approval_setup_items.value[index] = Object.assign([], approval_setup_items.value[selectedRow.value])
 }
 </script>
 

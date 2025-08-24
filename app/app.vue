@@ -1,6 +1,6 @@
 <template>
   <div>
-    <NuxtLoadingIndicator color="linear-gradient(90deg, #7C3AED 0%, #9F67F6 50%, #4C1D95 100%)"></NuxtLoadingIndicator>
+    <NuxtLoadingIndicator color="linear-gradient(90deg, #A78BFA 0%, #9F67F6 50%, #4C1D95 100%)"></NuxtLoadingIndicator>
     <NuxtRouteAnnouncer />
   </div>
   <ClientOnly>

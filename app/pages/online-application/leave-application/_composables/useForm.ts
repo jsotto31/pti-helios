@@ -13,6 +13,9 @@ export default function(leave_application: LeaveRequest | null) {
         with_pay: leave_application?.with_pay ?? true
     });
 
+    const dialog = ref(false)
+
+
     function clear() {
         form.employee_id = null;
         form.date_from = "";
@@ -34,5 +37,5 @@ export default function(leave_application: LeaveRequest | null) {
         form.number_of_days = days;
     });
 
-    return { form, clear };
+    return { form, clear, dialog };
 }

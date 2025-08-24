@@ -13,7 +13,7 @@ if(loader.value){
   if (theme.current.value.dark) {
     loader.value.style.color = '#ffffff'
   } else {
-    loader.value.style.color = '#7C3AED'
+    loader.value.style.color = '#A78BFA'
   }
 }
 </script>
@@ -38,7 +38,7 @@ if(loader.value){
   width: 16px;
   height: 16px;
   border-radius: 10px;
-  background: #7C3AED;
+  background: #A78BFA;
   animation: move 3s linear infinite alternate;
 }
 

@@ -68,7 +68,7 @@ import useTimeRecordForm from '../_composables/useTimeRecordForm'
 const props = defineProps(['form'])
 const { timesheets, time_in, time_out, selected, updateTime, removeTime } = useTimeRecordForm(props)
 
-const { data } = await useApiFetch('/timesheets/' + props.form.employee_id, {
+await useApiFetch('/timesheets/' + props.form.employee_id, {
     method: "GET",
     immediate: true,
     query: {

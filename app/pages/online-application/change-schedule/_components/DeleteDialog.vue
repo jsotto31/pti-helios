@@ -6,11 +6,11 @@
         <template #default="{isActive}">
             <DeleteConfirmationCard
                 :loading="status == 'pending'" 
-                @delete="destroy" 
+                @delete="execute" 
                 @cancel="isActive.value = false"
             > 
-                Are you sure you want to delete this Leave Application? 
-                This action cannot be undone and will permanently remove all related data associated with this leave request.
+                Are you sure you want to delete this Change Schedule Application? 
+                This action cannot be undone and will permanently remove all related data associated with this Change Schedule request.
             </DeleteConfirmationCard>
         </template>
     </v-dialog>
@@ -28,14 +28,14 @@ const props = defineProps<{
 
 const emits = defineEmits(['delete']);
 
-// Updated API endpoint for leave application
-const { execute: destroy, status } = await useApiFetch("/online-application/leave-applications/" + props.id, {
+// Updated API endpoint for Change Schedule application
+const { execute, status } = await useApiFetch("/online-application/change-schedule-applications/" + props.id, {
     method: 'DELETE',
     onResponse(event) {
         if (event.response.ok) {
             $notification.addNotification(
                 'Success',
-                'Leave Application has been deleted',
+                'Change Schedule Application has been deleted',
                 'success'
             );
             dialog.value = false;
@@ -43,7 +43,7 @@ const { execute: destroy, status } = await useApiFetch("/online-application/leav
         } else {
             $notification.addNotification(
                 'Error',
-                'Failed to delete Leave Application',
+                'Failed to delete Change Schedule Application',
                 'error'
             );
         }

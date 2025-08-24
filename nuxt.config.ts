@@ -23,8 +23,4 @@ export default defineNuxtConfig({
     },
     appName: process.env.APP_NAME || '',
   },
-
-  app: {
-    pageTransition: { name: 'fade', mode: 'out-in' }
-  }
 })

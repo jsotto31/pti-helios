@@ -1,10 +1,12 @@
 <template>
     <div>
-        <v-btn @click="dialog = true" variant="flat" color="primary" class="text-capitalize">Apply Leave</v-btn>
         <v-dialog width="900" v-model="dialog" persistent>
+            <template #activator="{props}">
+                <v-btn v-bind="props" variant="flat" color="primary" class="text-capitalize" icon="mdi-pencil" size="small" rounded></v-btn>
+            </template>
             <template #default="{ isActive }">
                 <v-card class="pa-5 rounded-lg" :disabled="status == 'pending'">
-                    <v-card-title class="pr-4">Apply Leave Application</v-card-title>
+                    <v-card-title class="pr-4">Edit Overtime Application</v-card-title>
                     <v-divider></v-divider>
                     <v-card-text class="px-4">
                         <v-container>
@@ -28,39 +30,33 @@
                             </v-row>
                             <v-row class="mb-0 pb-0">
                                 <v-col class="pa-0" cols="3">
-                                    <label for="leave-type" class="font-weight-bold mt-3">Leave Type</label>
+                                    <label for="form-date" class="font-weight-bold mt-3">Date</label>
                                 </v-col>
-                                <v-col class="pa-0" cols="7">
-                                    <SelectLeaveType :error-messages="(error?.data.errors?.type || [''])[0]" density="compact" v-model="form.type"></SelectLeaveType>
+                                <v-col class="pa-0 d-flex" cols="7" style="gap: 15px">
+                                    <VDateInput id="form-date" input-format="Y-m-d" :error-messages="(error?.data.errors?.date || [''])[0]" class="mt-1" v-model="form.date" variant="outlined" color="primary" density="compact" prepend-icon="" prepend-inner-icon="mdi-calendar"></VDateInput>
                                 </v-col>
                             </v-row>
                             <v-row class="mb-0 pb-0">
                                 <v-col class="pa-0" cols="3">
-                                    <label for="with-pay" class="font-weight-bold mt-3">With Pay</label>
+                                    <label for="Time" class="font-weight-bold mt-3">Time</label>
                                 </v-col>
-                                <v-col class="pa-0" cols="7">
-                                    <SelectYesOrNo density="compact" v-model="form.with_pay"></SelectYesOrNo>
-                                </v-col>
-                            </v-row>
-                            <v-row class="mb-0 pb-0">
-                                <v-col class="pa-0" cols="3"></v-col>
                                 <v-col class="pa-0 d-flex" cols="7" style="gap: 15px">
                                     <div class="w-100">
-                                        <label for="date-from" class="font-weight-bold mt-3">Date From</label>
-                                        <VDateInput :error-messages="(error?.data.errors?.date_from || [''])[0]" class="mt-1" v-model="form.date_from" variant="outlined" color="primary" density="compact" prepend-icon="" prepend-inner-icon="mdi-calendar"></VDateInput>
+                                        <label for="time-from" class="font-weight-bold mt-3">From</label>
+                                        <TimePicker id="time-from" :error-messages="(error?.data.errors?.time_from || [''])[0]" class="mt-1" v-model="form.time_from" variant="outlined" color="primary" density="compact" prepend-icon="" prepend-inner-icon="mdi-calendar"></TimePicker>
                                     </div>
                                     <div class="w-100">
-                                        <label for="date-to" class="font-weight-bold mt-3">Date To</label>
-                                        <VDateInput input-format="Y-m-d" :error-messages="(error?.data.errors?.date_to || [''])[0]" class="mt-1" v-model="form.date_to" variant="outlined" color="primary" density="compact" prepend-icon="" prepend-inner-icon="mdi-calendar"></VDateInput>
+                                        <label for="time-to" class="font-weight-bold mt-3">To</label>
+                                        <TimePicker id="time-to" :error-messages="(error?.data.errors?.time_to || [''])[0]" class="mt-1" v-model="form.time_to" variant="outlined" color="primary" density="compact" prepend-icon="" prepend-inner-icon="mdi-calendar"></TimePicker>
                                     </div>
                                 </v-col>
                             </v-row>
                             <v-row class="mb-0 pb-0">
                                 <v-col class="pa-0" cols="3">
-                                    <label for="number-of-days" class="font-weight-bold mt-3">Days</label>
+                                    <label for="form-date" class="font-weight-bold mt-3">Duration</label>
                                 </v-col>
-                                <v-col class="pa-0" cols="7">
-                                    <v-number-input :error-messages="(error?.data.errors?.number_of_days || [''])[0]" color="primary" control-variant="hidden" variant="outlined" readonly density="compact" v-model="form.number_of_days"></v-number-input>
+                                <v-col class="pa-0 d-flex" cols="7" style="gap: 15px">
+                                    <v-text-field :model-value="form.duration" color="primary" hint="this cant be edit" readonly density="compact" variant="outlined" single-line label="00:00"></v-text-field>
                                 </v-col>
                             </v-row>
                             <v-row class="mb-0 pb-0">
@@ -79,7 +75,7 @@
                         <v-btn class="text-capitalize px-4" @click="isActive.value = false"
                             variant="flat">Cancel</v-btn>
                         <v-btn :loading="status == 'pending'" class="text-capitalize px-4" variant="flat"
-                            color="primary" @click="create">Save</v-btn>
+                            color="primary" @click="execute">Save</v-btn>
                     </v-card-actions>
                 </v-card>
             </template>
@@ -90,28 +86,28 @@
 <script setup lang="ts">
 import { VDateInput } from 'vuetify/labs/VDateInput'
 import SelectEmployee from '~/components/SelectEmployee.vue';
-import SelectLeaveType from '~/components/SelectLeaveType.vue';
 import SelectYesOrNo from '~/components/SelectYesOrNo.vue';
 import useForm from '../_composables/useForm';
 import { useNotificationStore } from '#imports';
+import type { OvertimeApplication } from '~/types/online-application';
+const props = defineProps<{overtime_application: OvertimeApplication}>()
 const $notification = useNotificationStore();
 const dialog = ref(false)
-const {form, clear} = useForm(null)
-const emits = defineEmits(['create'])
+const {form, clear} = useForm(props.overtime_application)
+const emits = defineEmits(['update'])
 
-const { execute: create, error, status } = await useApiFetch("/online-application/leave-applications", {
-    method: 'POST',
+const { execute, error, status } = await useApiFetch("/online-application/overtime-applications/" + props.overtime_application.id, {
+    method: 'PUT',
     body: form,
     onResponse(event) {
         console.log(event)
         if (event.response.ok) {
             $notification.addNotification(
                 'Success',
-                'Leave Application has been created',
+                'Overtime Application has been updated',
                 'success'
             )
-            clear()
-            emits('create')
+            emits('update')
             dialog.value = false;
         } else {
             $notification.addNotification(
@@ -123,7 +119,6 @@ const { execute: create, error, status } = await useApiFetch("/online-applicatio
     }
 })
 
-watch(dialog, (currentValue) => currentValue == true ? clear() : '')
 </script>
 
 <style scoped></style>

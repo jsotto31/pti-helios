@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 import { useOptionStore } from '~/stores/options';
-defineProps(['error'])
+const props = defineProps(['error', 'selected', 'except'])
 const {employees} = storeToRefs(useOptionStore())
 const value = defineModel()
 useOptionStore().fetchEmployees()

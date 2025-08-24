@@ -2,31 +2,31 @@
   <v-container>
     <v-row>
       <v-col cols="12">
-        <v-card class="" style="border: 5px solid #7C3AED !important" flat>
+        <v-card class="" style="border: 5px solid #A78BFA !important" flat>
           <v-card-title class="bg-primary">Correction Application</v-card-title>
           <v-card-text class="py-5">
             <v-container>
               <v-row>
                 <v-col cols="6">
-                  <label for="online-request-type" class="text-subtitle-1">Status</label>
-                  <select-status v-model="selectedStatus" hide-details></select-status>
+                  <label for="status" class="text-subtitle-1">Status</label>
+                  <select-status id="status" v-model="selectedStatus" hide-details></select-status>
                 </v-col>
                 <v-col cols="6">
-                  <label for="online-request-type" class="text-subtitle-1">Employee</label>
-                  <select-employee v-model="employee_id" hide-details></select-employee>
+                  <label for="employee" class="text-subtitle-1">Employee</label>
+                  <select-employee id="employee" v-model="employee_id" hide-details></select-employee>
                 </v-col>
                 <v-col cols="6">
-                  <label for="online-request-type" class="text-subtitle-1">Date From</label>
-                  <VDateInput class="mt-1" v-model="date_from" variant="outlined" hide-details color="primary" density="comfortable" prepend-icon="" prepend-inner-icon="mdi-calendar"></VDateInput>
+                  <label for="date-from" class="text-subtitle-1">Date From</label>
+                  <VDateInput id="date-from" class="mt-1" v-model="date_from" variant="outlined" hide-details color="primary" density="comfortable" prepend-icon="" prepend-inner-icon="mdi-calendar"></VDateInput>
                 </v-col>
                 <v-col cols="6">
-                  <label for="online-request-type" class="text-subtitle-1">Date To</label>
-                  <VDateInput class="mt-1" v-model="date_to" variant="outlined" hide-details color="primary" density="comfortable" prepend-icon="" prepend-inner-icon="mdi-calendar"></VDateInput>
+                  <label for="date-to" class="text-subtitle-1">Date To</label>
+                  <VDateInput id="date-to" class="mt-1" v-model="date_to" variant="outlined" hide-details color="primary" density="comfortable" prepend-icon="" prepend-inner-icon="mdi-calendar"></VDateInput>
                 </v-col>
               </v-row>
               <v-row>
                 <v-col cols="4" class="d-flex" style="gap: 5px;">
-                  <CreateDialog @create="execute"></CreateDialog>
+                  <CreateDialog key="correction-create-dialog" @create="execute"></CreateDialog>
                 </v-col>
               </v-row>
             </v-container>
@@ -36,7 +36,7 @@
     </v-row>
     <v-row>
       <v-col cols="12">
-        <v-card style="border: 5px solid #7C3AED !important">
+        <v-card style="border: 5px solid #A78BFA !important">
           <v-card-title class="bg-primary">Application List</v-card-title>
           <v-card-text class="">
             <v-container>
@@ -65,12 +65,12 @@
                         color="success">{{ value }}</v-chip>
                     </template>
                     <template #item.approving_authority="{ item }">
-                      <v-btn class="text-capitalize" variant="text" prepend-icon="mdi-timeline-check">
-                        Approval History
+                      <v-btn class="text-capitalize" variant="text" prepend-icon="mdi-eye-outline">
+                        Details
                       </v-btn>
                     </template>
                     <template #item.details="{ item }">
-                      <v-btn color="info" size="small" icon="mdi-eye-outline" class="rounded text-capitalize" variant="text"></v-btn>
+                      <v-btn color="info" size="small" icon="mdi-eye-outline" class="rounded text-capitalize" variant="tonal"></v-btn>
                     </template>
                     <template #item.action="{ item }">
                       <div class="d-flex" style="gap: 5px;">

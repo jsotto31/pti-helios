@@ -81,7 +81,7 @@
                         <v-btn class="text-capitalize px-4" @click="isActive.value = false"
                             variant="flat">Cancel</v-btn>
                         <v-btn :loading="status == 'pending'" class="text-capitalize px-4" variant="flat"
-                            color="primary" @click="execute">Save</v-btn>
+                            color="primary" @click="edit">Save</v-btn>
                     </v-card-actions>
                 </v-card>
             </template>
@@ -103,7 +103,7 @@ const dialog = ref(false)
 const {form, clear} = useForm(props.leave_application)
 const emits = defineEmits(['update'])
 
-const { execute, error, status } = await useApiFetch("/online-application/leave-applications/" + props.leave_application.id, {
+const { execute: edit, error, status } = await useApiFetch("/online-application/leave-applications/" + props.leave_application.id, {
     method: 'PUT',
     body: form,
     onResponse(event) {

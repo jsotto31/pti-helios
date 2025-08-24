@@ -1,11 +1,11 @@
 <template>
     <div>
-        <v-btn @click="dialog = true" variant="flat" color="primary" class="text-capitalize">Add Correction
+        <v-btn @click="dialog = true" variant="flat" color="primary" class="text-capitalize">Apply Correction
             Application</v-btn>
         <v-dialog width="1000" v-model="dialog" persistent>
             <template #default="{ isActive }">
                 <v-card class="pa-5 rounded-lg" :disabled="status == 'pending'">
-                    <v-card-title class="pr-4">Add Correction Application</v-card-title>
+                    <v-card-title class="pr-4">Apply Correction Application</v-card-title>
                     <v-divider></v-divider>
                     <v-card-text class="px-4" style="max-height: 900px;overflow-y: auto;">
                         <v-container>
@@ -15,26 +15,26 @@
                                         approver?</label>
                                 </v-col>
                                 <v-col class="pa-0" cols="9">
-                                    <select-yes-or-no density="compact"
+                                    <select-yes-or-no id="allow_approver" density="compact"
                                         v-model="form.allow_approver"></select-yes-or-no>
                                 </v-col>
                             </v-row>
                             <v-row class="mb-0 pb-0">
                                 <v-col class="pa-0" cols="3">
-                                    <label for="employee" class="font-weight-bold mt-3">Employee</label>
+                                    <label for="form-employee" class="font-weight-bold mt-3">Employee</label>
                                 </v-col>
                                 <v-col class="pa-0" cols="9">
-                                    <SelectEmployee :error-messages="(error?.data.errors?.employee_id || [''])[0]"
+                                    <SelectEmployee id="form-employee" :error-messages="(error?.data.errors?.employee_id || [''])[0]"
                                         density="compact" v-model="form.employee_id"></SelectEmployee>
                                 </v-col>
                             </v-row>
                             <v-row class="mb-0 pb-0">
                                 <v-col class="pa-0" cols="3">
-                                    <label for="date-from" class="font-weight-bold mt-3">Date of dificiency</label>
+                                    <label for="form-date-from" class="font-weight-bold mt-3">Date of dificiency</label>
                                 </v-col>
                                 <v-col class="pa-0" cols="9">
                                     <div class="w-100">
-                                        <VDateInput :error-messages="(error?.data.errors?.date || [''])[0]" class="mt-1"
+                                        <VDateInput id="form-date-from" :error-messages="(error?.data.errors?.date || [''])[0]" class="mt-1"
                                             v-model="form.date" variant="outlined" color="primary" density="compact"
                                             prepend-icon="" prepend-inner-icon="mdi-calendar">
                                         </VDateInput>
@@ -43,7 +43,7 @@
                             </v-row>
                             <v-row class="mb-0 pb-0">
                                 <v-col class="pa-0" cols="3">
-                                    <label for="date-from" class="font-weight-bold mt-3">Employee Time Records</label>
+                                    <label class="font-weight-bold mt-3">Employee Time Records</label>
                                 </v-col>
                                 <v-col class="pa-0" cols="9">
                                     <Suspense
@@ -57,10 +57,10 @@
                             </v-row>
                             <v-row class="mb-0 pb-0">
                                 <v-col class="pa-0" cols="3">
-                                    <label for="number-of-days" class="font-weight-bold mt-3">Reason</label>
+                                    <label for="reason" class="font-weight-bold mt-3">Reason</label>
                                 </v-col>
                                 <v-col class="pa-0" cols="9">
-                                    <v-textarea color="primary" variant="outlined" single-line label="Reason"
+                                    <v-textarea id="reason" color="primary" variant="outlined" single-line label="Reason"
                                         density="compact" v-model="form.reason"></v-textarea>
                                 </v-col>
                             </v-row>

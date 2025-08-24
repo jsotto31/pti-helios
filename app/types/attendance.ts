@@ -11,10 +11,22 @@ export interface Timesheet {
 
 
 export interface TimesheetForm {
-  work_date: string;        
-  actual_time_in: string | null;  
+  work_date: string;
+  actual_time_in: string | null;
   actual_time_out: string | null;
   requested_time_in: string | null;
   requested_time_out: string | null;
   status: string;
 }
+
+export type ScheduleDay = {
+  start: string | null;
+  end: string | null;
+  day: string;
+  tardy_start: string | null;
+  absent_start: string | null;
+  early_dismiss: string | null;
+  date_effective: string | null;
+};
+
+export type ScheduleGrouped = Record<string, ScheduleDay[]>

@@ -1,3 +1,5 @@
+import type { ScheduleDay } from "./attendance"
+
 export interface LeaveRequest {
   id: number
   employee_id: number        // foreign key
@@ -46,4 +48,82 @@ export interface CorrectionApplication {
   allow_approver: boolean;
   status: CorrectionApplicationStatus;
   items: CorrectionApplicationItem[];
+}
+
+export interface ChangeScheduleForm {
+  employee_id: number | string | null;
+  date: string;
+  date_from: string;
+  date_to: string;
+  type: "permanent" | "temporary" | string; // restrict if needed
+  reason: string;
+  allow_approver: boolean;
+  schedule: Record<string, ScheduleDay[]>; // keyed by day ("monday", etc.)
+}
+
+export type ChangeScheduleType = "permanent" | "temporary";
+export type ChangeScheduleStatus = "pending" | "approved" | "rejected";
+
+export interface ChangeScheduleApplicationItem {
+  id?: number;
+  change_schedule_application_id?: number;
+  start?: string | null; // "HH:mm:ss"
+  end?: string | null;   // "HH:mm:ss"
+  day?: string | null;   // e.g. "monday" | "tuesday"
+  tardy_start?: string | null; // "HH:mm:ss"
+  absent_start?: string | null; // "HH:mm:ss"
+  early_dismiss?: string | null; // "HH:mm:ss"
+  date_effective?: string | null; // ISO timestamp
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface ChangeScheduleApplication {
+  id: number;
+  employee_id: string;
+  date_from?: string | null; // "YYYY-MM-DD"
+  date_to?: string | null;   // "YYYY-MM-DD"
+  date?: string | null;      // "YYYY-MM-DD"
+  type: ChangeScheduleType;
+  reason?: string | null;
+  allow_approver: boolean;
+  status: ChangeScheduleStatus;
+  created_by: string;
+  created_at?: string;
+  updated_at?: string;
+  items?: ChangeScheduleApplicationItem[];
+}
+
+
+export interface OvertimeApplication {
+  id: number;
+  employee_id: string;
+  date: string; // YYYY-MM-DD
+  time_from: string; // HH:mm:ss
+  time_to: string;   // HH:mm:ss
+  duration: string;  // HH:mm:ss
+  reason?: string | null;
+  allow_approver: boolean;
+  status: "pending" | "approved" | "rejected" | string;
+  created_by: string;
+  created_at: string; // timestamp
+  updated_at: string; // timestamp
+}
+
+export type ApprovalSequenceSetupItem = {
+  id?: number;
+  employee_id: string;
+  approver_id: null;
+}
+
+export interface ApprovalSetupItem {
+  id: number;
+  employee_id: string;
+  name: string;
+  email: string;
+  email_verified_at: string | null;
+  type: string;
+  created_at: string;
+  updated_at: string;
+  approval_sequence_setup_items: ApprovalSequenceSetupItem[];
 }
