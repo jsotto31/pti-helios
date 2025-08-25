@@ -19,7 +19,7 @@
 
 useHead({
   titleTemplate(title) {
-    return title ? `${title} | Helios` : 'Helios';
+    return title ? `${title} | Solution` : 'Solution';
   },
 })
 

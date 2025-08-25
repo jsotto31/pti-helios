@@ -4,7 +4,9 @@
             <v-layout>
                 <v-app-bar flat>
                     <div :class="rail ? '' : 'pa-5 pl-2'">
-                        <v-card @click="" :class="rail ? 'rounded-lg pa-2 ml-2 d-flex align-center bg-transparent' : 'pa-4 rounded-lg d-flex align-center bg-transparent'" flat>
+                        <v-card @click=""
+                            :class="rail ? 'rounded-lg pa-2 ml-2 d-flex align-center bg-transparent' : 'pa-4 rounded-lg d-flex align-center bg-transparent'"
+                            flat>
                             <v-avatar size="30" class="rounded-0 mr-2">
                                 <v-img :src="theme.current.value.dark ? '/atom_white.png' : '/atom.png'"></v-img>
                             </v-avatar>
@@ -36,7 +38,8 @@
             </v-layout>
         </v-navigation-drawer>
         <v-app-bar class="d-flex px-3 pr-4" height="80" flat>
-            <v-btn @click="rail = !rail" icon="mdi-menu" color="primary" rounded="lg" density="comfortable" variant="tonal"></v-btn>
+            <v-btn @click="rail = !rail" icon="mdi-menu" color="primary" rounded="lg" density="comfortable"
+                variant="tonal"></v-btn>
             <div class="w-25 px-5">
                 <v-text-field prepend-inner-icon="mdi-magnify" color="primary" density="comfortable" variant="outlined"
                     rounded="lg" single-line hide-details label="Search...">
@@ -48,16 +51,24 @@
             </div>
             <v-spacer></v-spacer>
             <dark-mode-switch></dark-mode-switch>
-            <v-btn variant="tonal" rounded="lg" color="primary" size="small" icon="mdi-information-outline" class="mr-3"></v-btn>
-            <v-btn variant="tonal" rounded="lg" color="purple" size="small" icon="mdi-bell-outline" class="mr-8"></v-btn>
+            <v-btn variant="tonal" rounded="lg" color="primary" size="small" icon="mdi-information-outline"
+                class="mr-3"></v-btn>
+            <v-btn variant="tonal" rounded="lg" color="purple" size="small" icon="mdi-bell-outline"
+                class="mr-8"></v-btn>
             <authenticated-layout-profile-dropdown></authenticated-layout-profile-dropdown>
         </v-app-bar>
         <v-main class="bg-surface">
             <v-container class="h-100 w-100 bg-surface pa-0 pr-3">
-                <v-card class="h-100 w-100 pa-5 rounded-xl" style="background-color: rgba(0,0,0, .05);" flat>
+                <v-card class="h-100 w-100 pa-3 rounded-xl" style="background-color: rgba(0,0,0, .05);" flat>
                     <slot></slot>
                 </v-card>
             </v-container>
+            <v-footer height="60" class="bg-surface text-center d-flex flex-column justify-center">
+                <span class="text-body-2">
+                    © {{ new Date().getFullYear() }} <strong>Solution</strong>. All rights reserved.
+                </span>
+            </v-footer>
+
         </v-main>
     </v-app>
 </template>
@@ -65,7 +76,7 @@
 <script setup lang="ts">
 import { useTheme } from 'vuetify'
 const theme = useTheme()
-const { menuItems } = storeToRefs(useRouteStore()) 
+const { menuItems } = storeToRefs(useRouteStore())
 const rail = ref(false)
 </script>
 

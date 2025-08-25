@@ -71,9 +71,6 @@
                     <template #item.type="{ value }">
                       {{ useDisplayLeaveDescription(value) }}
                     </template>
-                    <template #item.approving_authority="{ item }">
-                      <v-btn prepend-icon="mdi-eye-outline" class="rounded text-capitalize" variant="flat">Details</v-btn>
-                    </template>
                     <template #item.action="{ item }">
                       <div class="d-flex" style="gap: 5px;">
                         <EditDialog :key="'edit-leave-application'" @update="execute" :leave_application="(item as LeaveRequest)"></EditDialog>
