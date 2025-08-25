@@ -1,7 +1,8 @@
 <template>
     <div>
-        <v-btn @click="dialog = true" variant="flat" color="primary" class="text-capitalize">Apply Change
-            Schedule</v-btn>
+        <v-btn @click="dialog = true" variant="flat" color="primary" class="text-uppercase" prepend-icon="mdi-plus">
+            Apply Change Schedule
+        </v-btn>
         <v-dialog width="1400" v-model="dialog" persistent>
             <template #default="{ isActive }">
                 <v-card class="pa-5 rounded-lg" :disabled="status == 'pending'">

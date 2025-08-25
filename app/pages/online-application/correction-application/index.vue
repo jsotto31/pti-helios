@@ -2,8 +2,8 @@
   <v-container>
     <v-row>
       <v-col cols="12">
-        <v-card class="" style="border: 5px solid rgb(var(--v-theme-primary)) !important" flat>
-          <v-card-title class="bg-primary">Correction Application</v-card-title>
+        <v-card class="rounded-lg" flat>
+          <PageHeader title="Correction Application" subtitle="Manage correction of logs of employees." />
           <v-card-text class="py-5">
             <v-container>
               <v-row>
@@ -17,16 +17,15 @@
                 </v-col>
                 <v-col cols="6">
                   <label for="date-from" class="text-subtitle-1">Date From</label>
-                  <VDateInput id="date-from" class="mt-1" v-model="date_from" variant="outlined" hide-details color="primary" density="comfortable" prepend-icon="" prepend-inner-icon="mdi-calendar"></VDateInput>
+                  <VDateInput id="date-from" class="mt-1" v-model="date_from" variant="outlined" hide-details
+                    color="primary" density="comfortable" prepend-icon="" prepend-inner-icon="mdi-calendar">
+                  </VDateInput>
                 </v-col>
                 <v-col cols="6">
                   <label for="date-to" class="text-subtitle-1">Date To</label>
-                  <VDateInput id="date-to" class="mt-1" v-model="date_to" variant="outlined" hide-details color="primary" density="comfortable" prepend-icon="" prepend-inner-icon="mdi-calendar"></VDateInput>
-                </v-col>
-              </v-row>
-              <v-row>
-                <v-col cols="4" class="d-flex" style="gap: 5px;">
-                  <CreateDialog key="correction-create-dialog" @create="execute"></CreateDialog>
+                  <VDateInput id="date-to" class="mt-1" v-model="date_to" variant="outlined" hide-details
+                    color="primary" density="comfortable" prepend-icon="" prepend-inner-icon="mdi-calendar">
+                  </VDateInput>
                 </v-col>
               </v-row>
             </v-container>
@@ -36,8 +35,12 @@
     </v-row>
     <v-row>
       <v-col cols="12">
-        <v-card style="border: 5px solid rgb(var(--v-theme-primary)) !important">
-          <v-card-title class="bg-primary">Application List</v-card-title>
+        <v-card>
+         <v-card-title  class=" d-flex align-center justify-space-between elevated-4 font-weight-bold" >
+            <span class="pa-3 ">Application List</span>
+            <CreateDialog @create="execute" />
+          </v-card-title>
+          <v-divider></v-divider>
           <v-card-text class="">
             <v-container>
               <v-row>
@@ -51,11 +54,10 @@
                   </div>
                 </v-col>
                 <v-col cols="12" class="px-1">
-                  <v-data-table-server 
-                    v-model:items-per-page="itemsPerPage" :items="correction_application.data" :items-length="correction_application.total"
-                    :loading="status == 'pending'" :search="search" item-value="name" v-model:page="page" class="border"
-                    :headers="correction_application.headers" v-model:sort-by="sortBy" :header-props="{class: 'bg-primary'}" show-select
-                    >
+                  <v-data-table-server v-model:items-per-page="itemsPerPage" :items="correction_application.data"
+                    :items-length="correction_application.total" :loading="status == 'pending'" :search="search"
+                    item-value="name" v-model:page="page" class="border" :headers="correction_application.headers"
+                    v-model:sort-by="sortBy" :header-props="{ class: 'bg-primary' }" show-select>
                     <template #item.status="{ value }">
                       <v-chip prepend-icon="mdi-circle-medium" v-if="value == 'inactive'"
                         class="text-capitalize rounded" size="small" color="error">{{
@@ -70,11 +72,13 @@
                       </v-btn>
                     </template>
                     <template #item.details="{ item }">
-                      <v-btn color="info" size="small" icon="mdi-eye-outline" class="rounded text-capitalize" variant="tonal"></v-btn>
+                      <v-btn color="info" size="small" icon="mdi-eye-outline" class="rounded text-capitalize"
+                        variant="tonal"></v-btn>
                     </template>
                     <template #item.action="{ item }">
                       <div class="d-flex" style="gap: 5px;">
-                        <EditDialog @update="execute" :correction_application="(item as CorrectionApplication)"></EditDialog>
+                        <EditDialog @update="execute" :correction_application="(item as CorrectionApplication)">
+                        </EditDialog>
                         <DeleteDialog @delete="execute" :id="(item as CorrectionApplication).id"></DeleteDialog>
                       </div>
                     </template>

@@ -2,8 +2,8 @@
   <v-container>
     <v-row>
       <v-col cols="12">
-        <v-card class="" style="border: 5px solid rgb(var(--v-theme-primary)) !important" flat>
-          <v-card-title class="bg-primary">Overtime Management</v-card-title>
+          <v-card class="rounded-lg" flat>
+          <PageHeader title="Overtime Application" subtitle="Manage overtime of employees." />
           <v-card-text class="py-5">
             <v-container>
               <v-row>
@@ -24,11 +24,6 @@
                   <VDateInput class="mt-1" id="date-to" v-model="date_to" variant="outlined" hide-details color="primary" density="comfortable" prepend-icon="" prepend-inner-icon="mdi-calendar"></VDateInput>
                 </v-col>
               </v-row>
-              <v-row>
-                <v-col cols="4" class="d-flex" style="gap: 5px;">
-                  <CreateDialog @create="execute"></CreateDialog>
-                </v-col>
-              </v-row>
             </v-container>
           </v-card-text>
         </v-card>
@@ -36,8 +31,12 @@
     </v-row>
     <v-row>
       <v-col cols="12">
-        <v-card style="border: 5px solid rgb(var(--v-theme-primary)) !important">
-          <v-card-title class="bg-primary">Application List</v-card-title>
+        <v-card>
+          <v-card-title  class=" d-flex align-center justify-space-between elevated-4 font-weight-bold" >
+            <span class="pa-3 ">Application List</span>
+            <CreateDialog @create="execute" />
+          </v-card-title>
+          <v-divider></v-divider>
           <v-card-text class="">
             <v-container>
               <v-row>

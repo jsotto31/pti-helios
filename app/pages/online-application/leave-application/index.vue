@@ -3,10 +3,7 @@
     <v-row>
       <v-col cols="12">
         <v-card class="rounded-lg" flat>
-           <PageHeader title="Leave Application" subtitle="Manage leave applications for employees.">
-            <template #create>
-            </template>
-          </PageHeader>
+           <PageHeader title="Leave Application" subtitle="Manage leave applications for employees."/>
           <v-card-text class="py-5">
             <v-container>
               <v-row>
@@ -39,8 +36,8 @@
     <v-row>
       <v-col cols="12">
         <v-card >
-           <v-card-title class=" d-flex justify-space-between elevated-4" >
-            <span class="p-4 ">Application List</span>
+           <v-card-title  class=" d-flex align-center justify-space-between elevated-4 font-weight-bold" >
+            <span class="pa-3 ">Application List</span>
             <CreateDialog @create="execute" />
           </v-card-title>
           <v-divider></v-divider>
