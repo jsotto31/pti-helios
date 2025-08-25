@@ -23,4 +23,18 @@ export default defineNuxtConfig({
     },
     appName: process.env.APP_NAME || '',
   },
+
+  app: {
+    pageTransition: { name: 'fade', mode: 'out-in' },
+    head: {
+      link: [
+        {
+          rel: 'icon',
+          type: 'image/png',
+          href: '/atom.png' // put favicon.png inside /public folder
+        }
+      ]
+    }
+  },
+
 })

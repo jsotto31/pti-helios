@@ -103,7 +103,6 @@ const { execute: create, error, status } = await useApiFetch("/online-applicatio
     method: 'POST',
     body: form,
     onResponse(event) {
-        console.log(event)
         if (event.response.ok) {
             $notification.addNotification(
                 'Success',

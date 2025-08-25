@@ -1,6 +1,6 @@
 <template>
   <div>
-    <NuxtLoadingIndicator color="linear-gradient(90deg, #A78BFA 0%, #9F67F6 50%, #4C1D95 100%)"></NuxtLoadingIndicator>
+    <NuxtLoadingIndicator color="linear-gradient(90deg, rgb(var(--v-theme-primary)) 0%, #9F67F6 50%, #4C1D95 100%)"></NuxtLoadingIndicator>
     <NuxtRouteAnnouncer />
   </div>
   <ClientOnly>
@@ -23,6 +23,7 @@ useHead({
   },
 })
 
+useThemeToggle()
 </script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');

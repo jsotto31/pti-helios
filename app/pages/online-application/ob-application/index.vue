@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col cols="12">
-        <v-card class="" style="border: 5px solid #A78BFA !important" flat>
+        <v-card class="" style="border: 5px solid rgb(var(--v-theme-primary)) !important" flat>
           <v-card-title class="bg-primary">Official Business/WFH Management</v-card-title>
           <v-card-text class="py-5">
             <v-container>
@@ -40,7 +40,7 @@
     </v-row>
     <v-row>
       <v-col cols="12">
-        <v-card style="border: 5px solid #A78BFA !important">
+        <v-card style="border: 5px solid rgb(var(--v-theme-primary)) !important">
           <v-card-title class="bg-primary">Application List</v-card-title>
           <v-card-text class="">
             <v-container>

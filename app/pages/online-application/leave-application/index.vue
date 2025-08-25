@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col cols="12">
-        <v-card class="" style="border: 5px solid #A78BFA !important" flat>
+        <v-card class="" style="border: 5px solid rgb(var(--v-theme-primary)) !important" flat>
           <v-card-title class="bg-primary">Leave Management</v-card-title>
           <v-card-text class="py-5">
             <v-container>
@@ -30,7 +30,7 @@
               </v-row>
               <v-row>
                 <v-col cols="4" class="d-flex" style="gap: 5px;">
-                  <CreateDialog key="leave-application" @create="execute"></CreateDialog>
+                  <CreateDialog :key="status" @create="execute"></CreateDialog>
                 </v-col>
               </v-row>
             </v-container>
@@ -40,7 +40,7 @@
     </v-row>
     <v-row>
       <v-col cols="12">
-        <v-card style="border: 5px solid #A78BFA !important">
+        <v-card style="border: 5px solid rgb(var(--v-theme-primary)) !important">
           <v-card-title class="bg-primary">Application List</v-card-title>
           <v-card-text class="">
             <v-container>
@@ -76,8 +76,8 @@
                     </template>
                     <template #item.action="{ item }">
                       <div class="d-flex" style="gap: 5px;">
-                        <EditDialog key="edit-leave-application" @update="execute" :leave_application="(item as LeaveRequest)"></EditDialog>
-                        <DeleteDialog key="delete-leave-application" @delete="execute" :id="(item as LeaveRequest).id"></DeleteDialog>
+                        <EditDialog :key="'edit-leave-application'" @update="execute" :leave_application="(item as LeaveRequest)"></EditDialog>
+                        <DeleteDialog :key="'delete-leave-application'" @delete="execute" :id="(item as LeaveRequest).id"></DeleteDialog>
                       </div>
                     </template>
                   </v-data-table-server>

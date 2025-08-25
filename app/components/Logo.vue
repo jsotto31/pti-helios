@@ -1,6 +1,6 @@
 <template>
   <v-avatar class="rounded-0">
-    <v-img src="~/assets/logo.png"></v-img>
+    <v-img src="/atom.png"></v-img>
   </v-avatar>
 </template>
 
