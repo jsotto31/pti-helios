@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col cols="12">
-         <v-card class="rounded-lg" flat>
+        <v-card class="rounded-lg" flat>
           <PageHeader title="Change Schedule" subtitle="Manage Change Schedule for employees." />
           <v-card-text class="py-5">
             <v-container>
@@ -21,11 +21,15 @@
                 </v-col>
                 <v-col cols="4">
                   <label for="date-from" class="text-subtitle-1">Date From</label>
-                  <VDateInput class="mt-1" id="date-from" v-model="date_from" variant="outlined" hide-details color="primary" density="comfortable" prepend-icon="" prepend-inner-icon="mdi-calendar"></VDateInput>
+                  <VDateInput class="mt-1" id="date-from" v-model="date_from" variant="outlined" hide-details
+                    color="primary" density="comfortable" prepend-icon="" prepend-inner-icon="mdi-calendar">
+                  </VDateInput>
                 </v-col>
                 <v-col cols="4">
                   <label for="date-to" class="text-subtitle-1">Date To</label>
-                  <VDateInput class="mt-1" id="date-to" v-model="date_to" variant="outlined" hide-details color="primary" density="comfortable" prepend-icon="" prepend-inner-icon="mdi-calendar"></VDateInput>
+                  <VDateInput class="mt-1" id="date-to" v-model="date_to" variant="outlined" hide-details
+                    color="primary" density="comfortable" prepend-icon="" prepend-inner-icon="mdi-calendar">
+                  </VDateInput>
                 </v-col>
               </v-row>
             </v-container>
@@ -35,8 +39,8 @@
     </v-row>
     <v-row>
       <v-col cols="12">
-       <v-card >
-         <v-card-title  class=" d-flex align-center justify-space-between elevated-4 font-weight-bold" >
+        <v-card>
+          <v-card-title class=" d-flex align-center justify-space-between elevated-4 font-weight-bold">
             <span class="pa-3 ">Application List</span>
             <CreateDialog @create="execute" />
           </v-card-title>
@@ -54,11 +58,10 @@
                   </div>
                 </v-col>
                 <v-col cols="12" class="px-1">
-                  <v-data-table-server 
-                    v-model:items-per-page="itemsPerPage" :items="change_schedule_application.data" :items-length="change_schedule_application.total"
-                    :loading="status == 'pending'" :search="search" item-value="name" v-model:page="page" class="border"
-                    :headers="change_schedule_application.headers" v-model:sort-by="sortBy" :header-props="{class: 'bg-primary'}" show-select
-                    >
+                  <v-data-table-server v-model:items-per-page="itemsPerPage" :items="change_schedule_application.data"
+                    :items-length="change_schedule_application.total" :loading="status == 'pending'" :search="search"
+                    item-value="name" v-model:page="page" class="border" :headers="change_schedule_application.headers"
+                    v-model:sort-by="sortBy" :header-props="{ class: 'bg-primary' }" show-select>
                     <template #item.status="{ value }">
                       <v-chip prepend-icon="mdi-circle-medium" v-if="value == 'inactive'"
                         class="text-capitalize rounded" size="small" color="error">{{
@@ -69,7 +72,8 @@
                     </template>
                     <template #item.date="{ item }">
                       <p v-if="(item as ChangeScheduleApplication).type != 'permanent'">
-                        {{ (item as ChangeScheduleApplication).date_from }} - {{ (item as ChangeScheduleApplication).date_to }}
+                        {{ (item as ChangeScheduleApplication).date_from }} - {{ (item as
+                        ChangeScheduleApplication).date_to }}
                       </p>
                       <p v-else>{{ (item as ChangeScheduleApplication).date }}</p>
                     </template>
@@ -77,14 +81,18 @@
                       <span class="text-capitalize">{{ value }}</span>
                     </template>
                     <template #item.details="{ item }">
-                      <v-btn color="info" size="small" icon="mdi-eye-outline" class="rounded text-capitalize" variant="tonal"></v-btn>
+                      <v-btn color="info" size="small" icon="mdi-eye-outline" class="rounded text-capitalize"
+                        variant="tonal"></v-btn>
                     </template>
                     <template #item.approving_authority="{ item }">
-                      <v-btn prepend-icon="mdi-eye-outline" class="rounded text-capitalize" variant="flat">Details</v-btn>
+                      <v-btn prepend-icon="mdi-eye-outline" class="rounded text-capitalize"
+                        variant="flat">Details</v-btn>
                     </template>
                     <template #item.action="{ item }">
                       <div class="d-flex" style="gap: 5px;">
-                        <EditDialog :key="'edit-change-schedule' + (item as ChangeScheduleApplication).id" @update="execute" :change_schedule_application="(item as ChangeScheduleApplication)"></EditDialog>
+                        <EditDialog :key="'edit-change-schedule' + (item as ChangeScheduleApplication).id"
+                          @update="execute" :change_schedule_application="(item as ChangeScheduleApplication)">
+                        </EditDialog>
                         <DeleteDialog @delete="execute" :id="(item as ChangeScheduleApplication)?.id"></DeleteDialog>
                       </div>
                     </template>

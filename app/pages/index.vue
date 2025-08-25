@@ -1,4 +1,27 @@
 <template>
+  <v-container fluid class="pa-5">
+    <v-row class="align-center justify-space-between">
+      <v-col cols="12" md="6" class=" flex-column align-center">
+        <h1 class="font-weight-bold mb-0">Dashboard</h1>
+        <span class="text-subtitle-1 text-high-emphasis">Welcome to Helios HRIS</span>
+      </v-col>
+
+      <v-col cols="12" md="6" class="d-flex justify-end align-center text-medium-emphasis">
+        <div class="d-flex flex-column align-end">
+          <span class="font-weight-bold " style="font-size: 1.1rem;">
+            {{ currentDate }}
+          </span>
+          <span class="font-weight-medium "style="font-size: 1.1rem;">
+            {{ currentTime }}
+          </span>
+        </div>
+      </v-col>
+    </v-row>
+
+    <v-divider class="my-4"></v-divider>
+  </v-container>
+
+
   <div class="pa-5">
     <v-row>
       <v-col cols="3">
@@ -86,7 +109,32 @@ import GlassmorphismCard from '~/components/GlassmorphismCard.vue';
 useHead({
   title: 'Dashboard'
 })
+const currentDate = new Date().toLocaleDateString("en-US", {
+  weekday: "long",
+  year: "numeric",
+  month: "long",
+  day: "numeric"
+});
 
+const currentTime = ref(
+  new Date().toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", second: "2-digit" })
+);
+
+let timer: number | undefined;
+
+onMounted(() => {
+  timer = window.setInterval(() => {
+    currentTime.value = new Date().toLocaleTimeString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit"
+    });
+  }, 1000);
+});
+
+onUnmounted(() => {
+  if (timer) clearInterval(timer);
+});
 definePageMeta({
   title: "dasboard",
   layout: 'authenticated',

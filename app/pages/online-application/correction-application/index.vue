@@ -36,7 +36,7 @@
     <v-row>
       <v-col cols="12">
         <v-card>
-         <v-card-title  class=" d-flex align-center justify-space-between elevated-4 font-weight-bold" >
+          <v-card-title class=" d-flex align-center justify-space-between elevated-4 font-weight-bold">
             <span class="pa-3 ">Application List</span>
             <CreateDialog @create="execute" />
           </v-card-title>

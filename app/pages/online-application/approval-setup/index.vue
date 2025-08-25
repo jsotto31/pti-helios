@@ -2,8 +2,8 @@
   <v-container>
     <v-row>
       <v-col cols="12">
-        <v-card class="rounded border" style="border: 5px solid rgb(var(--v-theme-primary)) !important" flat>
-          <v-card-title class="bg-primary">Online Approver Set-up</v-card-title>
+       <v-card class="rounded-lg" flat>
+          <PageHeader title="Online Approver Setup" subtitle="Manage approver of employees for online applications." />
           <v-card-text class="py-5">
             <v-container>
               <v-row>
@@ -24,7 +24,7 @@
     </v-row>
     <v-row>
       <v-col cols="12">
-        <v-card style="border: 5px solid rgb(var(--v-theme-primary)) !important">
+        <v-card >
           <v-card-title class="bg-primary">Employee List</v-card-title>
           <v-card-text class="">
             <v-container>
