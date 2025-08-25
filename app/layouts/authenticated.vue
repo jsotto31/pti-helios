@@ -19,16 +19,16 @@
                     <v-list class="pa-2">
                         <template v-for="(item, i) in menuItems" :key="'menu-' + i">
                             <v-list-item color="primary" v-if="item.type === 'item'" :key="'item-' + i"
-                                :title="item.title" :prepend-icon="item.icon" :to="item.link" density="default"
+                                :title="item.title"  :to="item.link" density="default"
                                 :class="rail ? 'mb-2 rounded pa-2 rounded-lg' : 'mb-2 rounded pa-4 rounded-lg'"></v-list-item>
                             <v-list-group v-else :key="'group-' + i">
                                 <template v-slot:activator="{ props }">
                                     <v-list-item color="primary" v-bind="props" :title="item.title"
-                                        :prepend-icon="item.icon" density="default"
+                                         density="default"
                                         :class="rail ? 'mb-1 rounded-lg pa-2' : 'mb-1 rounded-lg pa-4'"></v-list-item>
                                 </template>
                                 <v-list-item color="primary" v-for="(child, j) in item.children"
-                                    :key="'child-' + i + '-' + j" :title="child.title" prepend-icon="mdi-file"
+                                    :key="'child-' + i + '-' + j" :title="child.title" 
                                     v-bind="child.link == '/' ? {} : { to: child.link }" density="default"
                                     :class="rail ? 'mb-1 rounded-lg pa-2' : 'mb-1 rounded-lg pa-4'"></v-list-item>
                             </v-list-group>
