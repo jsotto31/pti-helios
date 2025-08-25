@@ -6,7 +6,7 @@
         <v-dialog width="900" v-model="dialog" persistent>
             <template #default="{ isActive }">
                 <v-card class="pa-5 rounded-lg" :disabled="status == 'pending'">
-                    <v-card-title class="pr-4">Apply Overtime Application</v-card-title>
+                    <v-card-title class="pr-4 text-center">Apply Overtime Application</v-card-title>
                     <v-divider></v-divider>
                     <v-card-text class="px-4">
                         <v-container>

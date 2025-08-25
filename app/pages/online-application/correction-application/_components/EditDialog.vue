@@ -31,7 +31,7 @@
                             </v-row>
                             <v-row class="mb-0 pb-0">
                                 <v-col class="pa-0" cols="3">
-                                    <label for="date-from" class="font-weight-bold mt-3">Date of dificiency</label>
+                                    <label for="date-from" class="font-weight-bold mt-3">Date of deficiency</label>
                                 </v-col>
                                 <v-col class="pa-0" cols="9">
                                     <div class="w-100">

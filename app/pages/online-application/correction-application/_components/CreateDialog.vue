@@ -6,7 +6,7 @@
         <v-dialog width="1000" v-model="dialog" persistent>
             <template #default="{ isActive }">
                 <v-card class="pa-5 rounded-lg" :disabled="status == 'pending'">
-                    <v-card-title class="pr-4">Apply Correction Application</v-card-title>
+                    <v-card-title class="pr-4 text-center">Apply Correction Application</v-card-title>
                     <v-divider></v-divider>
                     <v-card-text class="px-4" style="max-height: 900px;overflow-y: auto;">
                         <v-container>
@@ -31,7 +31,7 @@
                             </v-row>
                             <v-row class="mb-0 pb-0">
                                 <v-col class="pa-0" cols="3">
-                                    <label for="form-date-from" class="font-weight-bold mt-3">Date of dificiency</label>
+                                    <label for="form-date-from" class="font-weight-bold mt-3">Date of deficiency</label>
                                 </v-col>
                                 <v-col class="pa-0" cols="9">
                                     <div class="w-100">
