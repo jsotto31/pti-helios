@@ -17,7 +17,7 @@ export const useRouteStore = defineStore('routes', function () {
                 { title: 'Schedule List', icon: 'mdi-file', link: '/' },
                 { title: 'Individual Schedule', icon: 'mdi-file', link: '/' },
                 { title: 'Holiday Setup', icon: 'mdi-file', link: '/' },
-                { title: 'Manage In/Out', icon: 'mdi-file', link: '/' },
+                { title: 'Manage In/Out', icon: 'mdi-file', link: '/manage-in-out' },
                 { title: 'Employee Attendance', icon: 'mdi-file', link: '/' },
                 { title: 'Attendance Cutoff', icon: 'mdi-file', link: '/' },
             ],
