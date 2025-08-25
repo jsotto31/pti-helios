@@ -26,10 +26,10 @@ useHead({
 useThemeToggle()
 </script>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
 
 * {
-  font-family: "Roboto", sans-serif;
+  font-family: "Geist", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
   font-variation-settings:
