@@ -15,15 +15,14 @@
         <v-card class="rounded-lg pa-4" width="330" elevation="5" >
             <h4 ><strong class="font-weight-medium">Good Morning</strong>, <span class="font-weight-regular">Joshua Sotto</span></h4>
             <small>Admin</small>
-            <v-text-field rounded="lg" variant="outlined" hide-details density="comfortable" prepend-inner-icon="mdi-magnify" color="primary" class="my-3" label="search" single-line></v-text-field>
-            <v-card flat class="rounded-lg px-4 pr-6" style="background-color: rgba(var(--v-theme-primary), .4);">
-                <div class="d-flex align-center">
-                    <h5 class="font-weight-medium text-subtitle-2">Allow Notification</h5>
-                    <v-spacer></v-spacer>
+            <!-- <v-text-field rounded="lg" variant="outlined" hide-details density="compact" prepend-inner-icon="mdi-magnify" class="my-2 search-field" label="Search" single-line ></v-text-field> -->
+            <v-card flat class="rounded-lg px-4 pr-6" >
+                <div class="d-flex align-center justify-space-between">
+                    <h5 class="font-weight-bold text-subtitle-2">Allow Notification</h5>
                     <div><v-switch class="mt-4" v-model="notification" color="primary" density="compact" hide-detials></v-switch></div>
                 </div>
             </v-card>
-            <v-divider class="mt-3"></v-divider>
+            <v-divider ></v-divider>
             <v-list nav class="px-0">
                 <v-list-item class="rounded-lg text-subtitle-2" @click="" prepend-icon="mdi-cog-outline">Profile</v-list-item>
                 <v-list-item class="rounded-lg text-subtitle-2" @click="" prepend-icon="mdi-lock">Change Password</v-list-item>

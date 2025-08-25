@@ -6,7 +6,7 @@
             </template>
             <template #default="{ isActive }">
                 <v-card class="pa-5 rounded-lg" :disabled="status == 'pending'">
-                    <v-card-title class="pr-4">Edit Correction Application</v-card-title>
+                    <v-card-title class="pr-4 text-center">Edit Correction Application</v-card-title>
                     <v-divider></v-divider>
                     <v-card-text class="px-4" style="max-height: 900px;overflow-y: auto;">
                         <v-container>

@@ -6,7 +6,7 @@
             </template>
             <template #default="{ isActive }">
                 <v-card class="pa-5 rounded-lg" :disabled="status == 'pending'">
-                    <v-card-title class="pr-4">Edit OB/WFH Application</v-card-title>
+                    <v-card-title class="pr-4 text-center">Edit OB/WFH Application</v-card-title>
                     <v-divider></v-divider>
                     <v-card-text class="px-4">
                         <v-container>
