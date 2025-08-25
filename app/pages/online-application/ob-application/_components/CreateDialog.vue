@@ -1,6 +1,9 @@
 <template>
     <div>
-        <v-btn @click="dialog = true" variant="flat" color="primary" class="text-capitalize">Add OB/WFH Application</v-btn>
+        <v-btn @click="dialog = true" variant="flat" color="primary" class="text-uppercase" prepend-icon="mdi-plus">
+            Apply 
+        </v-btn>
+
         <v-dialog width="900" v-model="dialog" persistent>
             <template #default="{ isActive }">
                 <v-card class="pa-5 rounded-lg" :disabled="status == 'pending'">
@@ -14,7 +17,8 @@
                                         approver?</label>
                                 </v-col>
                                 <v-col class="pa-0" cols="7">
-                                    <select-yes-or-no density="compact" v-model="form.allow_approver"></select-yes-or-no>
+                                    <select-yes-or-no density="compact"
+                                        v-model="form.allow_approver"></select-yes-or-no>
                                 </v-col>
                             </v-row>
                             <v-row class="mb-0 pb-0">
@@ -22,7 +26,8 @@
                                     <label for="leave-type" class="font-weight-bold mt-3">Official Business Type</label>
                                 </v-col>
                                 <v-col class="pa-0" cols="7">
-                                    <SelectOBType :error-messages="(error?.data.errors?.type || [''])[0]" density="compact" v-model="form.type"></SelectOBType>
+                                    <SelectOBType :error-messages="(error?.data.errors?.type || [''])[0]"
+                                        density="compact" v-model="form.type"></SelectOBType>
                                 </v-col>
                             </v-row>
                             <v-row class="mb-0 pb-0">
@@ -30,7 +35,8 @@
                                     <label for="employee" class="font-weight-bold mt-3">Employee</label>
                                 </v-col>
                                 <v-col class="pa-0" cols="7">
-                                    <SelectEmployee :error-messages="(error?.data.errors?.employee_id || [''])[0]" density="compact" v-model="form.employee_id"></SelectEmployee>
+                                    <SelectEmployee :error-messages="(error?.data.errors?.employee_id || [''])[0]"
+                                        density="compact" v-model="form.employee_id"></SelectEmployee>
 
                                 </v-col>
                             </v-row>
@@ -39,11 +45,17 @@
                                 <v-col class="pa-0 d-flex" cols="7" style="gap: 15px">
                                     <div class="w-100">
                                         <label for="date-from" class="font-weight-bold mt-3">Date From</label>
-                                        <VDateInput :error-messages="(error?.data.errors?.date_from || [''])[0]" class="mt-1" v-model="form.date_from" variant="outlined" color="primary" density="compact" prepend-icon="" prepend-inner-icon="mdi-calendar"></VDateInput>
+                                        <VDateInput :error-messages="(error?.data.errors?.date_from || [''])[0]"
+                                            class="mt-1" v-model="form.date_from" variant="outlined" color="primary"
+                                            density="compact" prepend-icon="" prepend-inner-icon="mdi-calendar">
+                                        </VDateInput>
                                     </div>
                                     <div class="w-100">
                                         <label for="date-to" class="font-weight-bold mt-3">Date To</label>
-                                        <VDateInput time input-format="Y-m-d" :error-messages="(error?.data.errors?.date_to || [''])[0]" class="mt-1" v-model="form.date_to" variant="outlined" color="primary" density="compact" prepend-icon="" prepend-inner-icon="mdi-calendar"></VDateInput>
+                                        <VDateInput time input-format="Y-m-d"
+                                            :error-messages="(error?.data.errors?.date_to || [''])[0]" class="mt-1"
+                                            v-model="form.date_to" variant="outlined" color="primary" density="compact"
+                                            prepend-icon="" prepend-inner-icon="mdi-calendar"></VDateInput>
                                     </div>
                                 </v-col>
                             </v-row>
@@ -52,11 +64,17 @@
                                 <v-col class="pa-0 d-flex" cols="7" style="gap: 15px">
                                     <div class="w-100">
                                         <label for="date-from" class="font-weight-bold mt-3">Time From</label>
-                                        <TimePicker :error-messages="(error?.data.errors?.time_from || [''])[0]" class="mt-1" v-model="form.time_from" variant="outlined" color="primary" density="compact" prepend-icon="" prepend-inner-icon="mdi-calendar"></TimePicker>
+                                        <TimePicker :error-messages="(error?.data.errors?.time_from || [''])[0]"
+                                            class="mt-1" v-model="form.time_from" variant="outlined" color="primary"
+                                            density="compact" prepend-icon="" prepend-inner-icon="mdi-calendar">
+                                        </TimePicker>
                                     </div>
                                     <div class="w-100">
                                         <label for="date-to" class="font-weight-bold mt-3">Time To</label>
-                                        <TimePicker :error-messages="(error?.data.errors?.time_to || [''])[0]" class="mt-1" v-model="form.time_to" variant="outlined" color="primary" density="compact" prepend-icon="" prepend-inner-icon="mdi-calendar"></TimePicker>
+                                        <TimePicker :error-messages="(error?.data.errors?.time_to || [''])[0]"
+                                            class="mt-1" v-model="form.time_to" variant="outlined" color="primary"
+                                            density="compact" prepend-icon="" prepend-inner-icon="mdi-calendar">
+                                        </TimePicker>
                                     </div>
                                 </v-col>
                             </v-row>
@@ -65,7 +83,8 @@
                                     <label for="number-of-days" class="font-weight-bold mt-3">Reason</label>
                                 </v-col>
                                 <v-col class="pa-0" cols="7">
-                                    <v-textarea color="primary" variant="outlined" single-line label="Reason" density="compact" v-model="form.reason"></v-textarea>
+                                    <v-textarea color="primary" variant="outlined" single-line label="Reason"
+                                        density="compact" v-model="form.reason"></v-textarea>
                                 </v-col>
                             </v-row>
                         </v-container>
@@ -92,7 +111,7 @@ import useForm from '../_composables/useForm';
 import { useNotificationStore } from '#imports';
 const $notification = useNotificationStore();
 const dialog = ref(false)
-const {form, clear} = useForm(null)
+const { form, clear } = useForm(null)
 const emits = defineEmits(['create'])
 
 const { execute, error, status } = await useApiFetch("/online-application/ob-applications", {

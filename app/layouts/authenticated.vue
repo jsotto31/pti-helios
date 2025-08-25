@@ -19,7 +19,7 @@
                         class="mb-1 rounded"></v-list-item>
                     <v-list-group v-else :key="'group-' + i">
                         <template v-slot:activator="{ props }">
-                            <v-list-item v-bind="props" :title="item.title" :prepend-icon="item.icon"
+                            <v-list-item v-bind="props" :title  ="item.title" :prepend-icon="item.icon"
                                 density="comfortable" class="mb-1 rounded"></v-list-item>
                         </template>
                         <v-list-item v-for="(child, j) in item.children" :key="'child-' + i + '-' + j"
@@ -41,9 +41,9 @@
             <authenticated-layout-profile-dropdown></authenticated-layout-profile-dropdown>
         </v-app-bar>
         <v-main>
-            <v-container class="bg-">
+            <div class="py-5 px-5">
                 <slot></slot>
-            </v-container>
+            </div>
         </v-main>
     </v-app>
 </template>
