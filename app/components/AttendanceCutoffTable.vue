@@ -1,5 +1,5 @@
 <template>
-  <v-card class="rounded-lg pa-5">
+  <v-card class="rounded-lg pa-5" flat>
     <v-card-title class="text-subtitle-1 mb-2 font-weight-medium">
       Attendance Cutoff (August 16 - August 31, 2025)
     </v-card-title>
