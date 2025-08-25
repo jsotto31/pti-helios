@@ -2,8 +2,11 @@
   <v-container>
     <v-row>
       <v-col cols="12">
-        <v-card class="" style="border: 5px solid rgb(var(--v-theme-primary)) !important" flat>
-          <v-card-title class="bg-primary">Leave Management</v-card-title>
+        <v-card class="rounded-lg" flat>
+           <PageHeader title="Leave Application" subtitle="Manage leave applications for employees.">
+            <template #create>
+            </template>
+          </PageHeader>
           <v-card-text class="py-5">
             <v-container>
               <v-row>
@@ -28,11 +31,6 @@
                   <VDateInput class="mt-1" v-model="date_to" variant="outlined" hide-details color="primary" density="comfortable" prepend-icon="" prepend-inner-icon="mdi-calendar"></VDateInput>
                 </v-col>
               </v-row>
-              <v-row>
-                <v-col cols="4" class="d-flex" style="gap: 5px;">
-                  <CreateDialog :key="status" @create="execute"></CreateDialog>
-                </v-col>
-              </v-row>
             </v-container>
           </v-card-text>
         </v-card>
@@ -40,10 +38,14 @@
     </v-row>
     <v-row>
       <v-col cols="12">
-        <v-card style="border: 5px solid rgb(var(--v-theme-primary)) !important">
-          <v-card-title class="bg-primary">Application List</v-card-title>
+        <v-card >
+           <v-card-title class=" d-flex justify-space-between elevated-4" >
+            <span class="p-4 ">Application List</span>
+            <CreateDialog @create="execute" />
+          </v-card-title>
+          <v-divider></v-divider>
           <v-card-text class="">
-            <v-container>
+            <v-container class="rounded-lg pa-4">
               <v-row>
                 <v-col cols="12" class="px-1 d-flex align-center">
                   <div class="d-flex align-center w-100">
