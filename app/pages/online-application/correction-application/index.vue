@@ -8,21 +8,21 @@
             <v-container>
               <v-row>
                 <v-col cols="6">
-                  <label for="status" class="text-subtitle-1">Status</label>
+                  <label for="status" class="font-weight-medium"">Status</label>
                   <select-status id="status" v-model="selectedStatus" hide-details></select-status>
                 </v-col>
                 <v-col cols="6">
-                  <label for="employee" class="text-subtitle-1">Employee</label>
+                  <label for="employee" class="font-weight-medium"">Employee</label>
                   <select-employee id="employee" v-model="employee_id" hide-details></select-employee>
                 </v-col>
                 <v-col cols="6">
-                  <label for="date-from" class="text-subtitle-1">Date From</label>
+                  <label for="date-from" class="font-weight-medium"">Date From</label>
                   <VDateInput id="date-from" class="mt-1" v-model="date_from" variant="outlined" hide-details
                     color="primary" density="comfortable" prepend-icon="" prepend-inner-icon="mdi-calendar">
                   </VDateInput>
                 </v-col>
                 <v-col cols="6">
-                  <label for="date-to" class="text-subtitle-1">Date To</label>
+                  <label for="date-to" class="font-weight-medium"">Date To</label>
                   <VDateInput id="date-to" class="mt-1" v-model="date_to" variant="outlined" hide-details
                     color="primary" density="comfortable" prepend-icon="" prepend-inner-icon="mdi-calendar">
                   </VDateInput>
@@ -98,6 +98,10 @@ import type { CorrectionApplication } from '~/types/online-application';
 import CreateDialog from './_components/CreateDialog.vue'
 import DeleteDialog from './_components/DeleteDialog.vue';
 import EditDialog from './_components/EditDialog.vue';
+import SelectEmployee from "~/components/filters/SelectEmployee.vue";
+import SelectStatus from "~/components/filters/SelectStatus.vue";
+import SelectBatchStatus from "~/components/filters/SelectBatchStatus.vue";
+
 const itemsPerPage = ref(10);
 const date_from = ref(null);
 const date_to = ref(null);

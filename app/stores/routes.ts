@@ -27,7 +27,7 @@ export const useRouteStore = defineStore('routes', function () {
             title: 'Employee Database',
             icon: 'mdi-database',
             children: [
-                { title: 'Employee 201 File', icon: 'mdi-file', link: '/' },
+                { title: 'Employee 201 File', icon: 'mdi-file', link: '/employee-201' },
                 { title: 'Employee Status', icon: 'mdi-file', link: '/' },
                 { title: 'Employee Clearance', icon: 'mdi-file', link: '/' },
             ],

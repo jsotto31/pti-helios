@@ -97,6 +97,12 @@ import type { LeaveRequest, ObRequest } from '~/types/online-application';
 import CreateDialog from './_components/CreateDialog.vue'
 import DeleteDialog from './_components/DeleteDialog.vue';
 import EditDialog from './_components/EditDialog.vue';
+import SelectOBType from "~/components/filters/SelectOBType.vue";
+import SelectStatus from "~/components/filters/SelectStatus.vue";
+import SelectEmployee from "~/components/filters/SelectEmployee.vue";
+import SelectBatchStatus from "~/components/filters/SelectBatchStatus.vue";
+
+
 const itemsPerPage = ref(10);
 const date_from = ref(null);
 const date_to = ref(null);
