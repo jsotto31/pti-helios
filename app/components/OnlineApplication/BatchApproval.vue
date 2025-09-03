@@ -2,13 +2,15 @@
     <div class="d-flex align-center w-100">
         <h4>Batch Approval</h4>
         <div class="w-25 d-flex align-center">
-            <select-batch-status v-model="selectedStatus" class="ml-5" density="compact" hide-details></select-batch-status>
+            <SelectBatchStatus v-model="selectedStatus" class="ml-5" density="compact" hide-details></SelectBatchStatus>
         </div>
         <v-btn flat class="ml-5 mt-2" color="primary">Save</v-btn>
     </div>
     <online-application-batch-approval-progress-dialog progress="0" :show="status == 'pending'"></online-application-batch-approval-progress-dialog>
 </template>
 <script setup>
+import SelectBatchStatus from '../filters/SelectBatchStatus.vue';
+
 const $notification = useNotificationStore()
 const props = defineProps(['applications', 'selected']);
 const selectedStatus = ref()
