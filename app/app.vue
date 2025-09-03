@@ -16,6 +16,9 @@
   <NotificationContainer></NotificationContainer>
 </template>
 <script setup lang="ts">
+import Loader from './components/globals/loader.vue';
+import NotificationContainer from './components/notifications/NotificationContainer.vue';
+
 
 useHead({
   titleTemplate(title) {

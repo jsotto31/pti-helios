@@ -9,15 +9,15 @@
               <v-row>
                 <v-col cols="4">
                   <label for="online-request-type" class="text-subtitle-1">Status</label>
-                  <select-status v-model="selectedStatus" hide-details></select-status>
+                  <SelectStatus v-model="selectedStatus" hide-details></SelectStatus>
                 </v-col>
                 <v-col cols="4">
                   <label for="online-request-type" class="text-subtitle-1">Leave Type</label>
-                  <select-leave-type v-model="type" hide-details></select-leave-type>
+                  <SelectLeaveType v-model="type" hide-details></SelectLeaveType>
                 </v-col>
                 <v-col cols="4">
                   <label for="online-request-type" class="text-subtitle-1">Employee</label>
-                  <select-employee v-model="employee_id" hide-details></select-employee>
+                  <SelectEmployee v-model="employee_id" hide-details></SelectEmployee>
                 </v-col>
                 <v-col cols="4">
                   <label for="online-request-type" class="text-subtitle-1">Date From</label>
@@ -97,6 +97,9 @@ import EditDialog from './_components/EditDialog.vue';
 import BatchApproval from '../../../components/OnlineApplication/BatchApproval.vue';
 import BatchDeleteButton from '~/components/OnlineApplication/BatchDeleteButton.vue';
 import ApprovalAuthorityDialog from '~/components/OnlineApplication/ApprovalAuthorityDialog.vue';
+import SelectEmployee from '~/components/filters/SelectEmployee.vue';
+import SelectStatus from '~/components/filters/SelectStatus.vue';
+import SelectLeaveType from '~/components/filters/SelectLeaveType.vue';
 const itemsPerPage = ref(10);
 const date_from = ref(null);
 const date_to = ref(null);
