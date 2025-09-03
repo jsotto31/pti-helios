@@ -85,8 +85,8 @@
 
 <script setup lang="ts">
 import { VDateInput } from 'vuetify/labs/VDateInput'
-import SelectEmployee from '~/components/SelectEmployee.vue';
-import SelectYesOrNo from '~/components/SelectYesOrNo.vue';
+import SelectEmployee from '~/components/filters/SelectEmployee.vue';
+import SelectYesOrNo from '~/components/filters/SelectYesOrNo.vue';
 import useForm from '../_composables/useForm';
 import { useNotificationStore } from '#imports';
 import type { OvertimeApplication } from '~/types/online-application';

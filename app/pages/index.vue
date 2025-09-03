@@ -107,7 +107,7 @@
 </template>
 
 <script setup lang="ts">
-import GlassmorphismCard from '~/components/GlassmorphismCard.vue';
+import GlassmorphismCard from '~/components/dashboard/GlassmorphismCard.vue';
 useHead({
   title: 'Dashboard'
 })
