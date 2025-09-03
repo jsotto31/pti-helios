@@ -91,9 +91,9 @@
 
 <script setup lang="ts">
 import { VDateInput } from 'vuetify/labs/VDateInput'
-import SelectEmployee from '~/components/SelectEmployee.vue';
-import SelectLeaveType from '~/components/SelectLeaveType.vue';
-import SelectYesOrNo from '~/components/SelectYesOrNo.vue';
+import SelectEmployee from '~/components/filters/SelectEmployee.vue';
+import SelectLeaveType from '~/components/filters/SelectLeaveType.vue';
+import SelectYesOrNo from '~/components/filters/SelectYesOrNo.vue';
 import useForm from '../_composables/useForm';
 import { useNotificationStore } from '#imports';
 const $notification = useNotificationStore();
