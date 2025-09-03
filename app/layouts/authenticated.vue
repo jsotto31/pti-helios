@@ -1,6 +1,6 @@
 <template>
     <v-app>
-        <v-navigation-drawer :rail="rail" :expand-on-hover="rail" width="310" class="border-0">
+        <v-navigation-drawer :rail="rail" :expand-on-hover="rail" rail-width="63" width="300" class="border-0">
             <v-layout>
                 <v-app-bar flat>
                     <div :class="rail ? '' : 'pa-5 pl-2'">
@@ -16,21 +16,21 @@
                     </div>
                 </v-app-bar>
                 <v-main class="scroll-hover h-screen">
-                    <v-list class="pa-2">
+                    <v-list class="pa-2" nav>
                         <template v-for="(item, i) in menuItems" :key="'menu-' + i">
                             <v-list-item color="primary" v-if="item.type === 'item'" :key="'item-' + i"
-                                :title="item.title"  :to="item.link" density="default"
-                                :class="rail ? 'mb-2 rounded pa-2 rounded-lg' : 'mb-2 rounded pa-4 rounded-lg'"></v-list-item>
+                                :title="item.title" :prepend-icon="item.icon" :to="item.link" density="default"
+                                :class="rail ? 'mb-2 rounded pa-3 rounded-lg' : 'mb-2 rounded pa-4 rounded-lg'"></v-list-item>
                             <v-list-group v-else :key="'group-' + i">
                                 <template v-slot:activator="{ props }">
                                     <v-list-item color="primary" v-bind="props" :title="item.title"
-                                         density="default"
-                                        :class="rail ? 'mb-1 rounded-lg pa-2' : 'mb-1 rounded-lg pa-4'"></v-list-item>
+                                        :prepend-icon="item.icon" density="default"
+                                        :class="rail ? 'mb-1 rounded-lg pa-3' : 'mb-1 rounded-lg pa-4'"></v-list-item>
                                 </template>
                                 <v-list-item color="primary" v-for="(child, j) in item.children"
                                     :key="'child-' + i + '-' + j" :title="child.title" 
                                     v-bind="child.link == '/' ? {} : { to: child.link }" density="default"
-                                    :class="rail ? 'mb-1 rounded-lg pa-2' : 'mb-1 rounded-lg pa-4'"></v-list-item>
+                                    :class="rail ? 'mb-1 rounded-lg pa-3' : 'mb-1 rounded-lg pa-3'"></v-list-item>
                             </v-list-group>
                         </template>
                     </v-list>

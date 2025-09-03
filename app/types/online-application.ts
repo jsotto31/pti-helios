@@ -11,6 +11,8 @@ export interface LeaveRequest {
   reason: string
   allow_approver: boolean
   with_pay: boolean
+  approval_sequence_items: ApprovalSequenceItem[]
+  status: string;
   created_at: string         // timestamp
   updated_at: string         // timestamp
 }
@@ -126,4 +128,17 @@ export interface ApprovalSetupItem {
   created_at: string;
   updated_at: string;
   approval_sequence_setup_items: ApprovalSequenceSetupItem[];
+}
+
+export interface ApprovalSequenceItem {
+  id: number;
+  application_type: string;
+  application_id: number;
+  employee_id: string;
+  status: "pending" | "approved" | "disapproved" | string;
+  can_approve: boolean;
+  last_approver: boolean;
+  employee: UserType,
+  created_at: string; 
+  updated_at: string;
 }

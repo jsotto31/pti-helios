@@ -1,25 +1,25 @@
 <template>
     <div>
-        <v-table class="rounded border mb-5">
+        <v-table class="rounded-lg border border-e-0 mb-5">
             <thead class="bg-primary">
                 <tr>
-                    <th class="text-center pa-0 border"></th>
-                    <th class="text-center pa-0 border">
+                    <th class="text-center border-e pa-0 "></th>
+                    <th class="text-center border-e pa-0 ">
                         Day of week
                     </th>
-                    <th class="text-center pa-0 border">
+                    <th class="text-center border-e pa-0 ">
                         From
                     </th>
-                    <th class="text-center pa-0 border">
+                    <th class="text-center border-e pa-0 ">
                         To
                     </th>
-                    <th class="text-center pa-0 border">
+                    <th class="text-center border-e pa-0 ">
                         Tardy Start
                     </th>
-                    <th class="text-center pa-0 border">
+                    <th class="text-center border-e pa-0 ">
                         Absent Start
                     </th>
-                    <th class="text-center pa-0 border">
+                    <th class="text-center border-e pa-0 ">
                         Early Dismissal
                     </th>
                 </tr>
@@ -27,19 +27,19 @@
             <tbody>
                 <template v-for="schedule_item, day in form.schedule" :key="generateRandomKey()">
                     <tr v-for="item, index in schedule_item" :key="generateRandomKey()">
-                        <td class="border" align="center">
+                        <td class="border-e" align="center">
                             <div class="d-flex justify-center w-100" style="gap: 5px;width: 60px;">
-                                <v-btn :active="selectedDay == day" @click="emits('copy', day)" :disabled="index != 0" variant="tonal" rounded size="small" icon="mdi-content-copy"></v-btn>
-                                <v-btn @click="emits('paste', day)" :disabled="index != 0" variant="tonal" rounded size="small" icon="mdi-content-paste"></v-btn>
-                                <v-btn @click="emits('refresh', day, index)"  variant="tonal" rounded size="small" icon="mdi-refresh"></v-btn>
-                                <v-btn @click="emits('add', day)" v-if="index == 0" variant="tonal" rounded size="small" icon="mdi-plus"></v-btn>
-                                <v-btn @click="emits('remove', day, index)"  v-else variant="tonal" rounded size="small" icon="mdi-trash-can-outline"></v-btn>
+                                <v-btn :active="selectedDay == day" @click="emits('copy', day)" :disabled="index != 0" color="primary" variant="tonal" rounded size="small" icon="mdi-content-copy" />
+                                <v-btn @click="emits('paste', day)" :disabled="index != 0" color="secondary" variant="tonal" rounded size="small" icon="mdi-content-paste" />
+                                <v-btn @click="emits('refresh', day, index)" color="info" variant="tonal" rounded size="small" icon="mdi-refresh" />
+                                <v-btn v-if="index == 0" @click="emits('add', day)" color="success" variant="tonal" rounded size="small" icon="mdi-plus" />
+                                <v-btn v-else @click="emits('remove', day, index)" color="error" variant="tonal" rounded size="small" icon="mdi-trash-can-outline" />
                             </div>
                         </td>
-                        <td class="border text-capitalize" align="center" style="width: 10%">
+                        <td class="border-e text-capitalize" align="center" style="width: 10%">
                             <span v-if="index == 0">{{ day }}</span>
                         </td>
-                        <td class="border" align="center" style="width: 15%">
+                        <td class="border-e" align="center" style="width: 15%">
                             <div class="d-flex justify-center align-center">
                                 <TimePicker v-model="
                                     //@ts-ignore
@@ -48,7 +48,7 @@
                                 </TimePicker>
                             </div>
                         </td>
-                        <td class="border" align="center" style="width: 15%">
+                        <td class="border-e" align="center" style="width: 15%">
                             <div class="d-flex justify-center align-center">
                                 <TimePicker v-model="
                                     //@ts-ignore
@@ -57,7 +57,7 @@
                                 </TimePicker>
                             </div>
                         </td>
-                        <td class="border" align="center" style="width: 15%">
+                        <td class="border-e" align="center" style="width: 15%">
                             <div class="d-flex justify-center align-center">
                                 <TimePicker v-model="
                                     //@ts-ignore
@@ -66,7 +66,7 @@
                                 </TimePicker>
                             </div>
                         </td>
-                        <td class="border" align="center" style="width: 15%">
+                        <td class="border-e" align="center" style="width: 15%">
                             <div class="d-flex justify-center align-center">
                                 <TimePicker v-model="
                                     //@ts-ignore
@@ -75,7 +75,7 @@
                                 </TimePicker>
                             </div>
                         </td>
-                        <td class="border" align="center" style="width: 15%">
+                        <td class="border-e" align="center" style="width: 15%">
                             <div class="d-flex justify-center align-center">
                                 <TimePicker v-model="
                                     //@ts-ignore

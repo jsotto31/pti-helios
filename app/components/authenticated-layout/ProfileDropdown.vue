@@ -7,15 +7,15 @@
                 </v-avatar>
                 <div>
                     <h5>Joshua Sotto</h5>
-                    <h5 class="font-weight-regular">Admin</h5>
+                    <h5 class="font-weight-regular text-capitalize">{{ user?.type }}</h5>
                 </div>
                 <v-icon class="ml-3">mdi-cog-outline</v-icon>
             </v-card>
         </template>
         <v-card class="rounded-lg pa-4" width="330" elevation="5" >
-            <h4 ><strong class="font-weight-medium">Good Morning</strong>, <span class="font-weight-regular">Joshua Sotto</span></h4>
-            <small>Admin</small>
-            <!-- <v-text-field rounded="lg" variant="outlined" hide-details density="compact" prepend-inner-icon="mdi-magnify" class="my-2 search-field" label="Search" single-line ></v-text-field> -->
+            <h4 ><strong class="font-weight-medium">Good Morning</strong>, <span class="font-weight-regular">{{ user?.name }}</span></h4>
+            <small v-if="user?.type == 'admin'" class="text-capitalize d-flex align-center"><v-icon size="small" class="mr-1">mdi-account-tie</v-icon>{{ user?.type }}</small>
+            <small v-else class="text-capitalize d-flex align-center"><v-icon size="small" class="mr-1">mdi-account</v-icon>{{ user?.type }}</small>
             <v-card flat class="rounded-lg px-4 pr-6" >
                 <div class="d-flex align-center justify-space-between">
                     <h5 class="font-weight-bold text-subtitle-2">Allow Notification</h5>
@@ -26,7 +26,7 @@
             <v-list nav class="px-0">
                 <v-list-item class="rounded-lg text-subtitle-2" @click="" prepend-icon="mdi-cog-outline">Profile</v-list-item>
                 <v-list-item class="rounded-lg text-subtitle-2" @click="" prepend-icon="mdi-lock">Change Password</v-list-item>
-                <v-list-item class="rounded-lg text-subtitle-2" @click="" prepend-icon="mdi-logout">Logout</v-list-item>
+                <v-list-item class="rounded-lg text-subtitle-2" @click="logout" prepend-icon="mdi-logout">Logout</v-list-item>
             </v-list>
         </v-card>
     </v-menu>
@@ -34,8 +34,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+const {logout, loading, user} = useAuthStore()
 const notification = ref(false)
-const feature = ref();
 </script>
 
 <style lang="scss" scoped></style>

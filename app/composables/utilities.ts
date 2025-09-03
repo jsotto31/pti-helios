@@ -22,25 +22,38 @@ export function generateRandomKey(): string {
   return `${Date.now()}-${Math.random().toString(36).substr(2, 6)}`;
 }
 
+export function useGreetings(): string {
+  const hours = new Date().getHours();
+
+  if (hours < 12) {
+    return "Good morning";
+  } else if (hours < 18) {
+    return "Good afternoon";
+  } else {
+    return "Good evening";
+  }
+}
 
 export function useThemeToggle() {
   const theme = useTheme()
 
   // Load saved theme from localStorage on init
-  if (process.client) {
+  if (typeof window !== 'undefined') {
     const savedTheme = localStorage.getItem('theme')
     if (savedTheme) {
-      theme.global.name.value = savedTheme
+      theme.change(savedTheme) // ✅ new API
     }
   }
 
   function toggleTheme() {
-    theme.global.name.value =
-      theme.global.current.value.dark ? 'light' : 'dark'
+    const isDark = theme.global.current.value.dark
+    const newTheme = isDark ? 'light' : 'dark'
+
+    theme.change(newTheme) // ✅ switch theme
 
     // Save theme to localStorage
-    if (process.client) {
-      localStorage.setItem('theme', theme.global.name.value)
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('theme', newTheme)
     }
   }
 

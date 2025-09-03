@@ -27,7 +27,6 @@
                                 <v-col class="pa-0" cols="6">
                                     <SelectEmployee id="employee" :error-messages="(error?.data.errors?.employee_id || [''])[0]"
                                         density="compact" v-model="form.employee_id"></SelectEmployee>
-
                                 </v-col>
                             </v-row>
                             <v-row class="mb-0 pb-0">
