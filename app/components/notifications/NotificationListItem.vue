@@ -3,8 +3,8 @@
         <template #prepend>
             <v-icon :color="icon.color">{{ icon.icon }}</v-icon>
         </template>
-        <h4 class="font-weight-medium">{{ notification.data.title }}</h4>
-        <h5 class="font-weight-regular">{{ notification.data.text }}</h5>
+        <h4 class="font-weight-medium" v-html="notification.data.title"></h4>
+        <h5 class="font-weight-regular" v-html="notification.data.text"></h5>
     </v-alert>
 </template>
 

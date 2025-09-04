@@ -7,6 +7,7 @@
 </template>
 
 <script setup lang="ts">
+import NotificationListItem from './NotificationListItem.vue'
 const {notifications} = storeToRefs(useNotificationStore())
 </script>
 
